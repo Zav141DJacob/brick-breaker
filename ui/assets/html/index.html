@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Breakout</title>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    </head>
+    <body>
+        <div class="gameContainer">
+            <div id="score">Score: 0</div>
+            <div id="level">Level: 1</div>
+            <div id="difficulty">Difficulty: Easy</div>
+            <div id="timer">0</div>
+            <div id="highScore">Highscore: 0</div>
+            <div id="lives">3</div>
+            <div id="gameStatus">Not playing</div>
+            <button id="start">Start</button>
+            <button onclick="location.reload()"id="restart">Restart</button>
+            <div class="grid center"></div>
+        </div>
+        <script type="module" src="/../../make-your-game/cmd/game.js"></script>
+    </body>
+</html>
