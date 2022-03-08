@@ -17,10 +17,12 @@ function moveBall() {
   delete events[38]
   ballPosition[0] += xDirection
   ballPosition[1] += yDirection
+
+  cPaddle()
   drawBall()
   cWalls()
-  cPaddle()
   cBricks()
+  
   let ballFrame = requestAnimationFrame(moveBall)
   //CHECK FOR LIVES/RESPAWN
   if (ballPosition[1] <= 0 && livesCount > 0) {

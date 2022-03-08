@@ -25,7 +25,9 @@ function createEventListeners() {
 }
 
 function onEventFired(event) {
+  // console.log(event.which)
   if (events[event.which]) {
+    console.log(events[event.which])
     events[event.which](event.which);
   }
 }

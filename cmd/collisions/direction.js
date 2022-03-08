@@ -12,29 +12,29 @@ function changeDirection() {
     return
   }
 
-  if (xDirection == 2 && yDirection == 2) {
-    yDirection = -2
+  if (xDirection > 0 && yDirection > 0) {
+    yDirection *= -1
     return
   }
 
-  if (xDirection == 2 && yDirection == -2) {
-    xDirection = -2
+  if (xDirection > 0 && yDirection < 0) {
+    xDirection *= -1
     /* console.log("LOL2")
     console.log(`LOL2, xDirection:${xDirection}`)
     console.log(`LOL2, yDirection:${yDirection}`) */
     return
   }
 
-  if (xDirection == -2 && yDirection == -2) {
-    yDirection = 2
+  if (xDirection < 0 && yDirection < 0) {
+    yDirection *= -1
     /* console.log("LOL3")
     console.log(`LOL3, xDirection:${xDirection}`)
     console.log(`LOL3, yDirection:${yDirection}`) */
     return
   }
 
-  if (xDirection == -2 && yDirection == 2) {
-    xDirection = 2
+  if (xDirection < 0 && yDirection > 0) {
+    xDirection *= -1
     return
   }
 
