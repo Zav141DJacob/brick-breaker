@@ -4,7 +4,7 @@ import { events } from "../listeners/listeners.js"
 import { timer, timerID } from "../actions/timer.js"
 import { grid, game } from "../game.js"
 import { ballMover } from "../actions/moveBall.js"
-import { movePaddleLeft, movePaddleRight} from "../actions/movePaddle.js"
+import { keyDown, keyUp} from "../actions/movePaddle.js"
 
 
 let pauseStatus = false
@@ -19,8 +19,8 @@ function pause() {
 }
 
 function unPause() {
-  events[37] = movePaddleLeft
-  events[39] = movePaddleRight
+  events[37] = keyDown
+  events[39] = keyDown
   delete events.Space
   events[32] = pause
   const menu = document.querySelector(".pause")
