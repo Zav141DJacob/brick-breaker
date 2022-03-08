@@ -110,6 +110,9 @@ function drawPause() {
     menuButton.id = "start"
     menuButton.innerHTML = "Menu"
     menu.appendChild(menuButton)
+    replayButton.id = "Restart"
+    replayButton.innerHTML = "Restart"
+    menu.appendChild(replayButton)
 }
 
 

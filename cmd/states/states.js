@@ -85,6 +85,16 @@ function pause() {
     fullResetter()
     menu()
   }
+
+  replayButton.onclick = function () {
+    pauseStatus = false
+    delete events.Space
+    events[32] = pause
+    removeGame()
+    drawGame()
+    gameRestarter()
+    game()
+  }
 }
 
 function unPause() {
