@@ -2,14 +2,14 @@ import { ballMover } from "../actions/moveBall.js";
 import { keyDown, keyUp } from "../actions/movePaddle.js";
 import { timer } from "../actions/timer.js";
 import { pause, unPause } from "../states/states.js";
-export { createEventListeners, events, events2, lol }
+export { createEventListeners, events, events2, multyFunction }
 
 
-
+//event dictionaries
 let events = {
   37: keyDown,
   39: keyDown,
-  38: lol,
+  38: multyFunction,
   32: pause,
 };
 
@@ -18,12 +18,13 @@ let events2 = {
   39: keyUp,
 }
 
-
+//MAIN EVENTLISTENER FUNC
 function createEventListeners() {
   document.addEventListener('keydown', onEventFired);
   document.addEventListener('keyup', onEventFired2);
 }
 
+//TO CHECK FROM DICTIONARIES IF IT EVENT EXISTS FOR PRESSED BUTTON
 function onEventFired(event) {
   if (events[event.which]) {
     events[event.which](event.which);
@@ -36,8 +37,9 @@ function onEventFired2(event) {
   }
 }
 
-function lol() {
+
+//MULTY FUNCTION FOR SAME KEY
+function multyFunction() {
   ballMover()
   timer()
-
 }

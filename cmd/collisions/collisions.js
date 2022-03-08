@@ -1,8 +1,10 @@
 export { cBricks, cWalls, cPaddle }
-import { levelSelector, BALL_DIAMETER, PADDLE_HEIGHT, PADDLE_WIDTH, BOARD_HEIGHT, BOARD_WIDTH, paddlePosition, paddle } from "../game.js"
+import { BOARD_HEIGHT, BOARD_WIDTH,  } from "../game.js"
 import { changeDirection } from "./direction.js"
 import { score } from "../actions/score.js"
-import { ballPosition } from "../drawing/draw.js"
+import { ballPosition, paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER } from "../drawing/draw.js"
+import { levelSelector } from "../levels/levels.js"
+
 
 function cBricks() {
         for (let i = 0; i < levelSelector.length; i++) {
