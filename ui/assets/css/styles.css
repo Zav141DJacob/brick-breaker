@@ -11,6 +11,30 @@ html {
   width: 100%;
 } */
 
+.menu {
+  width: 300px;
+  height: 350px;
+  background: #ff0000;
+}
+
+.pause {
+  width: 300px;
+  height: 350px;
+  background: orange;
+}
+
+.finish {
+  width: 300px;
+  height: 350px;
+  background: purple;
+}
+
+.death {
+  width: 300px;
+  height: 350px;
+  background: magenta;
+}
+
 .center {
   left: 50%;
   top: 50%;
@@ -21,7 +45,7 @@ html {
     position: absolute;
     width: 300px;
     height: 350px;
-    background: whitesmoke;
+    background: grey;
    /* background: url("../art/lol.png") no-repeat;
     background-size: cover; */
     border: solid 1px black;    
