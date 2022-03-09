@@ -1,19 +1,19 @@
 export { ballMover, moveBall }
-import { levelSelector, TIMER_STATUS} from "../game.js"
-import { drawBall, removeBall, ballPosition, createBall } from "../drawing/draw.js"
+import { drawBall, removeBall, ballPosition } from "../drawing/draw.js"
 import { cPaddle, cWalls, cBricks } from "../collisions/collisions.js"
 import { events } from "../listeners/listeners.js"
 import { xDirection, yDirection } from "../collisions/direction.js"
 import { death, finished, pauseStatus } from "../states/states.js"
 import { lives, livesCount } from "./lives.js"
+import { levelSelector } from "../levels/levels.js"
 
-let time
 
+//BALLMOVER WITH REQUESTANIMATIONFRAME, toggles moveBall
 function ballMover() {
   requestAnimationFrame(moveBall)
 }
 
-function moveBall() {   
+function moveBall() {
   delete events[38]
   ballPosition[0] += xDirection
   ballPosition[1] += yDirection
@@ -26,15 +26,15 @@ function moveBall() {
   let ballFrame = requestAnimationFrame(moveBall)
   //CHECK FOR LIVES/RESPAWN
   if (ballPosition[1] <= 0 && livesCount > 0) {
-     cancelAnimationFrame(ballFrame)
-     removeBall()
-     lives()
-   }
+    cancelAnimationFrame(ballFrame)
+    removeBall()
+    lives()
+  }
 
   //CHECK FOR DEATH
   if (ballPosition[1] <= 0 && livesCount <= 0) {
-    cancelAnimationFrame(ballFrame) 
-    death()  
+    cancelAnimationFrame(ballFrame)
+    death()
 
   }
 

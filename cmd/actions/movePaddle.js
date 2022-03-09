@@ -1,7 +1,6 @@
 export { keyDown, keyUp }
-import { drawPaddle } from "../drawing/draw.js"
-import { paddlePosition, BOARD_WIDTH, PADDLE_WIDTH } from "../game.js"
-import { events2 } from "../listeners/listeners.js"
+import { drawPaddle, paddlePosition, PADDLE_WIDTH } from "../drawing/draw.js"
+import { BOARD_WIDTH,} from "../game.js"
 
 let keydown = " "
 function keyDown(event) {
@@ -12,6 +11,7 @@ function keyUp() {
     keydown = '';
 }
 
+//UPDATE FUNC FOR PADDLE MOVEMENT WITH REQUESTANIMATIONFRAME, toggle: /keydown = event
 const update = () => {
   switch (keydown) {
     case 37:
