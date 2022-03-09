@@ -1,9 +1,10 @@
-export { level1 }
+export { levelSelector, resetBricks }
 
 //BLOCK INFO
 const BLOCK_WIDTH = 50
 const BLOCK_HEIGHT = 10
 
+//TO GET EVERY BLOCK CORNER LOCATION
 class Block {
   constructor(xAxis, yAxis) {
     this.bottomLeft = [xAxis, yAxis]
@@ -13,6 +14,12 @@ class Block {
   }
 }
 
+//FUNCTION TO RESET LEVELSELECTOR
+function resetBricks() {
+  levelSelector = [...level1]
+}
+
+//level1
 const level1 = [
   new Block(10, 330),
   new Block(61, 330),
@@ -25,3 +32,6 @@ const level1 = [
   new Block(163, 300),
   new Block(214, 300)
 ]
+
+let levelSelector
+levelSelector = [...level1]

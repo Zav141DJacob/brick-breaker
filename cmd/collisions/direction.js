@@ -1,9 +1,14 @@
 import { ballPosition } from "../drawing/draw.js"
 
-export { changeDirection, yDirection, xDirection }
+export { changeDirection, yDirection, xDirection, resetDirections }
 
 let yDirection = 2
 let xDirection = 2
+
+function resetDirections() {
+  yDirection = 2
+  xDirection = 2
+}
 
 function changeDirection() {
   if (ballPosition[1] <= 0) {

@@ -17,6 +17,12 @@ html {
   background: #ff0000;
 }
 
+.gameField {
+  width: 300px;
+  height: 350px;
+  background: grey;
+}
+
 .pause {
   width: 300px;
   height: 350px;
@@ -45,7 +51,6 @@ html {
     position: absolute;
     width: 300px;
     height: 350px;
-    background: grey;
    /* background: url("../art/lol.png") no-repeat;
     background-size: cover; */
     border: solid 1px black;    
