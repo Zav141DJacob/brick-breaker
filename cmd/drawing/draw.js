@@ -2,7 +2,7 @@ export {
     createBall, drawBall, drawBlock, createPaddle, drawPaddle, drawMenu,
     drawPause, startButton, removeBall, BALL_START, ballPosition, drawFinishMenu,
     drawDeathMenu, menuButton, replayButton, drawGame, gameField,
-    paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER, resetBall, resetPaddle,
+    paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER, resetBall, resetPaddle, continueButton
 }
 import { livesCount } from "../actions/lives.js"
 import { ballMover } from "../actions/moveBall.js"

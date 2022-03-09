@@ -1,7 +1,7 @@
 //EXPORTS
 export {
     grid, game, BOARD_WIDTH, BOARD_HEIGHT,
-    TIMER_STATUS, SCORE_DISPLAY, HIGH_SCORE_DISPLAY, LIVES_STATUS
+    TIMER_STATUS, SCORE_DISPLAY, HIGH_SCORE_DISPLAY, LIVES_STATUS, LEVEL_STATUS
 }
 
 //IMPORTS
@@ -18,7 +18,7 @@ const grid = document.querySelector(".grid")
 
 //GAME INFO
 const SCORE_DISPLAY = document.querySelector("#score")
-const GAME_STATUS = document.querySelector("#gameStatus")
+const LEVEL_STATUS = document.querySelector("#level")
 const LIVES_STATUS = document.querySelector("#lives")
 const TIMER_STATUS = document.querySelector("#timer")
 const HIGH_SCORE_DISPLAY = document.querySelector("#highScore")

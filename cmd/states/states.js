@@ -11,7 +11,7 @@ import { grid, game } from "../game.js"
 import { ballMover } from "../actions/moveBall.js"
 import { keyDown, keyUp } from "../actions/movePaddle.js"
 import { resetScore } from "../actions/score.js"
-import { resetBricks } from "../levels/levels.js"
+import { nextLevel, resetBricks, resetBricksLevel } from "../levels/levels.js"
 import { resetDirections } from "../collisions/direction.js"
 import { resetLives } from "../actions/lives.js"
 
@@ -45,7 +45,7 @@ function gameRestarter() {
   resetPaddle()
   resetTimer()
   resetScore()
-  resetBricks()
+  resetBricksLevel()
   resetDirections()
   resetLives()
 }
@@ -92,7 +92,7 @@ function pause() {
     events[32] = pause
     removeGame()
     drawGame()
-    gameRestarter()
+    fullResetter()
     game()
   }
 }
@@ -122,6 +122,14 @@ function finished() {
     menu()
   }
   replayButton.onclick = function () {
+    drawGame()
+    removeFinished()
+    fullResetter()
+    game()
+  }
+
+  continueButton.onclick = function () {
+    nextLevel()
     drawGame()
     removeFinished()
     gameRestarter()
