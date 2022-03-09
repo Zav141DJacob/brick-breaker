@@ -60,7 +60,8 @@ html {
     position: absolute;
     width: 50px;
     height: 10px;
-    background: red;
+    background-image: url("../art/block.png");
+    /* background: red; */
   }
 
   .paddle {

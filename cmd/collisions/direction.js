@@ -2,7 +2,7 @@ import { ballPosition } from "../drawing/draw.js"
 
 export { changeDirection, wallBounce, floorBounce, yDirection, xDirection, resetDirections }
 
-let speed = 6
+let speed = 8 //change this to const
 
 let yDirection = speed / 2
 let xDirection = speed / 2
@@ -78,18 +78,45 @@ function floorBounce(dir, x) { //x is for testing values
   //   //add argument x when calling out this function
   //   //and add console logs here for testing
   // }
-
+  if(dir) {
+    // console.log(dir)
+    if(dir == "left") {
+      xDirection -= (speed/2/4)
+    } else if (dir == "right") {
+      xDirection += (speed/2/4)
+    }
+    
+    if (xDirection < 0) {
+      if (xDirection == -1 * speed) {
+        xDirection = (speed - speed/2/4) * -1
+      }
+      yDirection = (speed + xDirection) * -1
+    } else {
+      if (xDirection == speed) {
+        xDirection = speed - speed/2/4
+      }
+      yDirection = (speed - xDirection) * -1
+    }
+    
+    
+    
+  }
+  
+  console.log(xDirection)
+  console.log(yDirection)
   if (xDirection > 0 && yDirection > 0) {
     yDirection *= -1
     return
   }
 
   if (xDirection > 0 && yDirection < 0) {
+    
     yDirection *= -1
     return
   }
 
   if (xDirection < 0 && yDirection < 0) {
+    
     yDirection *= -1
     return
   }

@@ -24,21 +24,42 @@ function cBricks() {
 }
 
 
-function cPaddle() {    
-    if ((ballPosition[0] > paddlePosition[0] && ballPosition[0] < paddlePosition[0] + PADDLE_WIDTH) && 
-    ballPosition[1] == 18) {
-        console.log("made it")
+function cPaddle() {
+    let bPosX = ballPosition[0]
+    let pPosX = paddlePosition[0]
+    // console.log("ballPos: ----- ", ballPosition)
+    // console.log("paddlePos: --- ", paddlePosition)
+    if ((bPosX + (BALL_DIAMETER/2) >= pPosX && bPosX < pPosX + PADDLE_WIDTH + (BALL_DIAMETER/2)) && 
+    ballPosition[1] < paddlePosition[1] + PADDLE_HEIGHT) {
+        // console.log(paddlePosition)
+        // console.log(pPosX + (PADDLE_WIDTH / 2) -3)
+        // console.log(pPosX + (PADDLE_WIDTH / 2) + 3)
         //  buggy line of code
         //  ballPosition[1] > paddlePosition[1] && ballPosition[1] < paddlePosition[1] + PADDLE_HEIGHT) 
-            console.log(ballPosition)
+        if (bPosX < pPosX + (PADDLE_WIDTH / 2) - PADDLE_WIDTH / 10) {
+            
+            floorBounce("left")
+        } else if (bPosX > pPosX + (PADDLE_WIDTH / 2) + PADDLE_WIDTH / 10) {
+            floorBounce("right")
+        } else {
+            // console.log("middle")
             floorBounce()
+        }
+
+        
+
+
+
+        ballPosition[1] = paddlePosition[1] + PADDLE_HEIGHT
     }
 }
 
 function cWalls() {
     if (ballPosition[1] >= (BOARD_HEIGHT - BALL_DIAMETER)) {
         floorBounce()
-    } else if (ballPosition[0] >= (BOARD_WIDTH - BALL_DIAMETER) ||
+        ballPosition[1] = BOARD_HEIGHT - BALL_DIAMETER - 1
+    }
+    if (ballPosition[0] >= (BOARD_WIDTH - BALL_DIAMETER) ||
         ballPosition[0] <= (0)) {
         wallBounce()
     }
