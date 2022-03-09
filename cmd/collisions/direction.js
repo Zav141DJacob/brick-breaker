@@ -1,19 +1,26 @@
 import { ballPosition } from "../drawing/draw.js"
 
-export { changeDirection, yDirection, xDirection, resetDirections }
+export { changeDirection, wallBounce, floorBounce, yDirection, xDirection, resetDirections }
 
-let yDirection = 2
-let xDirection = 2
+let speed = 6
+
+let yDirection = speed / 2
+let xDirection = speed / 2
 
 function resetDirections() {
-  yDirection = 2
-  xDirection = 2
+  yDirection = speed / 2
+  xDirection = speed / 2
 }
 
-function changeDirection() {
+function changeDirection(x) { //x is for testing values
+
+  // if (x) {
+  //   //add argument x when calling out this function
+  //   //and add console logs here for testing
+  // }
   if (ballPosition[1] <= 0) {
-    yDirection = 2
-    xDirection = 2
+    yDirection = speed / 2
+    xDirection = speed / 2
     return
   }
 
@@ -24,17 +31,11 @@ function changeDirection() {
 
   if (xDirection > 0 && yDirection < 0) {
     xDirection *= -1
-    /* console.log("LOL2")
-    console.log(`LOL2, xDirection:${xDirection}`)
-    console.log(`LOL2, yDirection:${yDirection}`) */
     return
   }
 
   if (xDirection < 0 && yDirection < 0) {
     yDirection *= -1
-    /* console.log("LOL3")
-    console.log(`LOL3, xDirection:${xDirection}`)
-    console.log(`LOL3, yDirection:${yDirection}`) */
     return
   }
 
@@ -42,6 +43,59 @@ function changeDirection() {
     xDirection *= -1
     return
   }
+}
 
+function wallBounce(x) { //x is for testing values
 
+  // if (x) {
+  //   //add argument x when calling out this function
+  //   //and add console logs here for testing
+  // }
+
+  if (xDirection > 0 && yDirection > 0) {
+    xDirection *= -1
+    return
+  }
+
+  if (xDirection > 0 && yDirection < 0) {
+    xDirection *= -1
+    return
+  }
+
+  if (xDirection < 0 && yDirection < 0) {
+    xDirection *= -1
+    return
+  }
+
+  if (xDirection < 0 && yDirection > 0) {
+    xDirection *= -1
+    return
+  }
+}
+
+function floorBounce(dir, x) { //x is for testing values
+  // if (x) {
+  //   //add argument x when calling out this function
+  //   //and add console logs here for testing
+  // }
+
+  if (xDirection > 0 && yDirection > 0) {
+    yDirection *= -1
+    return
+  }
+
+  if (xDirection > 0 && yDirection < 0) {
+    yDirection *= -1
+    return
+  }
+
+  if (xDirection < 0 && yDirection < 0) {
+    yDirection *= -1
+    return
+  }
+
+  if (xDirection < 0 && yDirection > 0) {
+    yDirection *= -1
+    return
+  }
 }
