@@ -1,6 +1,6 @@
 export { keyDown, keyUp }
 import { drawPaddle, paddlePosition, PADDLE_WIDTH } from "../drawing/draw.js"
-import { BOARD_WIDTH,} from "../game.js"
+import { BOARD_WIDTH, } from "../game.js"
 
 let keydown = " "
 function keyDown(event) {
@@ -8,7 +8,7 @@ function keyDown(event) {
 }
 
 function keyUp() {
-    keydown = '';
+  keydown = '';
 }
 
 //UPDATE FUNC FOR PADDLE MOVEMENT WITH REQUESTANIMATIONFRAME, toggle: /keydown = event
@@ -16,13 +16,16 @@ const update = () => {
   switch (keydown) {
     case 37:
       if (paddlePosition[0] > 0) {
-        paddlePosition[0] -= 5
+        if (paddlePosition[0] - 6 < 0) {
+          paddlePosition[0] = 0
+        }
+        paddlePosition[0] -= 6
         drawPaddle()
         break;
       }
     case 39:
       if (paddlePosition[0] < BOARD_WIDTH - PADDLE_WIDTH) {
-        paddlePosition[0] += 5
+        paddlePosition[0] += 6
         drawPaddle()
         break;
       }

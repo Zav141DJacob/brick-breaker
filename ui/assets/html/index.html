@@ -2,19 +2,23 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Breakout</title>
+        <title>BrickBreaker</title>
         <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+        <link rel="icon" type="image/x-icon" href="../art/favicon.png">
     </head>
-    <body>
-        <div class="gameContainer">
-            <div id="score">Score: 0</div>
-<!--             <div id="level">Level: 1</div>
-            <div id="difficulty">Difficulty: Easy</div> -->
-            <div id="timer">Time: 0</div>
-            <div id="highScore">High Score: 0</div>
-            <div id="lives">Lives: 3</div>
-            <div id="level">Level: 1</div>
-            <div class="grid center"></div>
+    <body> 
+        <div class="layout">
+            <div class="statsContainer">
+                <div id="score">Score: 0</div>
+                <div id="difficulty">Difficulty: Easy</div>
+                <div id="timer">Time: 0</div>
+               <!--  <div id="highScore">High Score: 0</div> -->
+                <div id="lives">Extra lives: 3</div>
+                <div id="level">Level: 0</div>
+            </div>
+            <div class="gameContainer">
+                <div class="grid center"></div>
+            </div>    
         </div>
         <script type="module" src="/../../cmd/game.js"></script>
     </body>

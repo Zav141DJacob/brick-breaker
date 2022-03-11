@@ -1,5 +1,6 @@
 export { timer, timerID, time, resetTimer }
 import { TIMER_STATUS } from "../game.js"
+import { ballPosition} from "../drawing/draw.js"
 
 let time = 0
 let timerID

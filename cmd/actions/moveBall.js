@@ -2,7 +2,7 @@ export { ballMover, moveBall }
 import { drawBall, removeBall, ballPosition } from "../drawing/draw.js"
 import { cPaddle, cWalls, cBricks } from "../collisions/collisions.js"
 import { events } from "../listeners/listeners.js"
-import { xDirection, yDirection } from "../collisions/direction.js"
+import { speed, xDirection, yDirection } from "../collisions/direction.js"
 import { death, finished, pauseStatus } from "../states/states.js"
 import { lives, livesCount } from "./lives.js"
 import { levelSelector } from "../levels/levels.js"
@@ -32,7 +32,7 @@ function moveBall() {
   }
 
   //CHECK FOR DEATH
-  if (ballPosition[1] <= 0 && livesCount <= 0) {
+  if (ballPosition[1] <= 0 && livesCount == 0) {
     cancelAnimationFrame(ballFrame)
     death()
 
