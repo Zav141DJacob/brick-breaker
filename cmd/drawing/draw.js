@@ -7,6 +7,7 @@ export {
 }
 import { livesCount } from "../actions/lives.js"
 import { ballMover } from "../actions/moveBall.js"
+import { scoreCount } from "../actions/score.js"
 import { changeDirection } from "../collisions/direction.js"
 import { grid } from "../game.js"
 import { levelNr, levelSelector } from "../levels/levels.js"
@@ -20,17 +21,20 @@ const easyButton = document.createElement("button")
 const mediumButton = document.createElement("button")
 const hardButton = document.createElement("button")
 const startButton = document.createElement("button")
+const text1 = document.createElement("p1")
+const text2 = document.createElement("p1")
+const text3 = document.createElement("p1")
 
 //BALL FUNCTIONS
 let BALL_DIAMETER = 25
 function changeBallDiameter() {
     if (difficulty == "easy") {
         BALL_DIAMETER = 25
-    } 
+    }
 
     if (difficulty == "medium") {
         BALL_DIAMETER = 20
-    } 
+    }
 
     if (difficulty == "hard") {
         BALL_DIAMETER = 15
@@ -58,7 +62,7 @@ function createBall() {
         ball.classList.add("ballMedium")
         ball.classList.remove("ballEasy")
         ball.classList.remove("ballHard")
-    } 
+    }
 
     if (difficulty == "hard") {
         ball.classList.add("ballHard")
@@ -116,12 +120,12 @@ function changePaddleStats() {
     if (difficulty == "easy") {
         PADDLE_WIDTH = 80
         paddlePosition = [165, 20]
-    } 
+    }
 
     if (difficulty == "medium") {
         PADDLE_WIDTH = 55
         paddlePosition = [175, 20]
-    } 
+    }
 
     if (difficulty == "hard") {
         PADDLE_WIDTH = 35
@@ -134,9 +138,9 @@ function resetPaddle() {
     if (difficulty == "easy") {
         paddlePosition = [165, 20]
     } else if (difficulty == "medium") {
-        paddlePosition = [175, 20]  
+        paddlePosition = [175, 20]
     } else if (difficulty == "hard") {
-        paddlePosition = [175, 20] 
+        paddlePosition = [175, 20]
     }
 }
 
@@ -170,12 +174,20 @@ function drawMainMenu() {
     const menu = document.createElement("div")
     menu.classList.add("mainMenu")
     grid.appendChild(menu)
-    startButton.id = "start"
+    text1.classList.add("text")
+    text1.id = "mainMenuTitle"
+    text1.innerHTML = "BrickBreaker"
+    menu.appendChild(text1)
+    startButton.id = "mainMenuContinue"
     startButton.innerHTML = "Continue"
     menu.appendChild(startButton)
-    continueButton.id = "HowToPlay"
+    continueButton.id = "mainMenuControls"
     continueButton.innerHTML = "Controls"
     menu.appendChild(continueButton)
+    text2.classList.add("text")
+    text2.id = "mainMenuMade"
+    text2.innerHTML = "Made by nimi25820, Jacob, KeitiN"
+    menu.appendChild(text2)
 }
 
 
@@ -184,30 +196,45 @@ function drawGameMenu() {
     const menu = document.createElement("div")
     menu.classList.add("gameMenu")
     grid.appendChild(menu)
-    startButton.id = "start"
-    startButton.innerHTML = "Start game"
-    menu.appendChild(startButton)
-    easyButton.id = "easy"
+    text1.id = "gameMenuTitle"
+    text1.innerHTML = "Please select a difficulty level"
+    text1.classList = "text"
+    menu.appendChild(text1)
+    easyButton.id = "gameMenuEasy"
     easyButton.innerHTML = "Easy"
     menu.appendChild(easyButton)
-    mediumButton.id = "medium"
+    mediumButton.id = "gameMenuMedium"
     mediumButton.innerHTML = "Medium"
     menu.appendChild(mediumButton)
-    hardButton.id = "hard"
+    hardButton.id = "gameMenuHard"
     hardButton.innerHTML = "Hard"
     menu.appendChild(hardButton)
-    continueButton.id = "back"
-    continueButton.innerHTML = "Back"
+    continueButton.id = "gameMenuBack"
+    continueButton.innerHTML = "Back to Main menu"
     menu.appendChild(continueButton)
+    startButton.id = "gameMenuStart"
+    startButton.innerHTML = "Start your adventure"
+    menu.appendChild(startButton)
 }
 
-//HOWTOPLAYMENU
-
+//CONTROLS
 function drawHowToMenu() {
     const menu = document.createElement("div")
     menu.classList.add("howToMenu")
     grid.appendChild(menu)
-    startButton.id = "back"
+    text1.id = "controlsLeftRight"
+    text1.classList.add("text")
+    text1.innerHTML = "Left and Right arrows move the paddle left or right"
+    menu.appendChild(text1)
+    text2.id = "controlsUp"
+    text1.classList.add("text")
+    text2.innerHTML = "Up arrow launches the ball"
+    menu.appendChild(text2)
+    text3.id = "controlsSpace"
+    text3.innerHTML = "Space pauses the game"
+    text3.classList.add("text")
+    menu.appendChild(text3)
+    startButton.id = "controlsMenuBack"
     startButton.innerHTML = "Back"
     menu.appendChild(startButton)
 }
@@ -228,10 +255,18 @@ function drawPause() {
     const menu = document.createElement("div")
     menu.classList.add("pause")
     gameField.appendChild(menu)
-    menuButton.id = "start"
-    menuButton.innerHTML = "Menu"
+    text1.id = "pausedTitle"
+    text1.innerHTML = "Paused"
+    text1.classList.add("text")
+    menu.appendChild(text1)
+    text2.id = "pausedPress"
+    text2.innerHTML = "Press space to continue"
+    text2.classList.add("text")
+    menu.appendChild(text2)
+    menuButton.id = "pausedMenu"
+    menuButton.innerHTML = "Exit to Main menu"
     menu.appendChild(menuButton)
-    replayButton.id = "Restart"
+    replayButton.id = "pausedRestart"
     replayButton.innerHTML = "Restart"
     menu.appendChild(replayButton)
 }
@@ -239,20 +274,46 @@ function drawPause() {
 
 //FINISH
 function drawFinishMenu() {
-    const menu = document.createElement("div")
-    menu.classList.add("finish")
-    grid.appendChild(menu)
-    menuButton.id = "Menu"
-    menuButton.innerHTML = "Menu"
-    menu.appendChild(menuButton)
     if (levelNr < 5) {
-        continueButton.id = "Continue"
-        continueButton.innerHTML = "Continue"
+        const menu = document.createElement("div")
+        menu.classList.add("finish")
+        grid.appendChild(menu)
+        text1.id = "finishLevel"
+        text1.innerHTML = "Level completed"
+        text1.classList.add("text")
+        menu.appendChild(text1)
+        text2.id = "finishScore"
+        text2.innerHTML = `Score: ${scoreCount}`
+        text2.classList.add("text")
+        menu.appendChild(text2)
+        menuButton.id = "finishMenu"
+        menuButton.innerHTML = "Back to Main menu"
+        menu.appendChild(menuButton)
+        replayButton.id = "finishReplay"
+        replayButton.innerHTML = "Replay the level"
+        menu.appendChild(replayButton)
+        continueButton.id = "finishContinue"
+        continueButton.innerHTML = "Next level"
         menu.appendChild(continueButton)
+    } else {
+        const menu = document.createElement("div")
+        menu.classList.add("finishFinal")
+        grid.appendChild(menu)
+        text1.id = "finishLevel"
+        text1.innerHTML = "Game completed"
+        text1.classList.add("text")
+        menu.appendChild(text1)
+        text2.id = "finishScore"
+        text2.innerHTML = `Final score: ${scoreCount}`
+        text2.classList.add("text")
+        menu.appendChild(text2)
+        menuButton.id = "finishMenu"
+        menuButton.innerHTML = "Back to Main menu"
+        menu.appendChild(menuButton)
+        replayButton.id = "finishReplay"
+        replayButton.innerHTML = "Replay the level"
+        menu.appendChild(replayButton)
     }
-    replayButton.id = "Replay"
-    replayButton.innerHTML = "Replay"
-    menu.appendChild(replayButton)
 }
 
 
@@ -261,13 +322,14 @@ function drawDeathMenu() {
     const menu = document.createElement("div")
     menu.classList.add("death")
     grid.appendChild(menu)
-    menuButton.id = "Menu"
-    menuButton.innerHTML = "Menu"
+    text1.id = "deathMenuTitle"
+    text1.innerHTML = "Game over"
+    text1.classList.add("text")
+    menu.appendChild(text1)
+    menuButton.id = "deathMenu"
+    menuButton.innerHTML = "Exit to Main menu"
     menu.appendChild(menuButton)
-    replayButton.id = "Restart"
-    replayButton.innerHTML = "Restart"
+    replayButton.id = "deathRestart"
+    replayButton.innerHTML = "Restart level"
     menu.appendChild(replayButton)
-    const death = document.createElement("div")
-    death.innerHTML = "YOU ARE DEAD"
-    menu.appendChild(death)
 }

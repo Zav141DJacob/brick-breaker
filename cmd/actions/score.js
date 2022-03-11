@@ -1,4 +1,4 @@
-export { score, resetScore, changeScoreDefault }
+export { score, resetScore, changeScoreDefault, scoreCount }
 import { SCORE_DISPLAY, HIGH_SCORE_DISPLAY } from "../game.js"
 import { levelSelector } from "../levels/levels.js"
 import { difficulty } from "../states/states.js"

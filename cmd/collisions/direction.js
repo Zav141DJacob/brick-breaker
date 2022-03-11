@@ -1,8 +1,9 @@
 import { ballPosition } from "../drawing/draw.js"
 import { difficulty } from "../states/states.js"
 
-export { changeDirection, wallBounce, floorBounce, yDirection, xDirection, resetDirections, changeSpeed, speed }
+export { changeDirection, wallBounce, floorBounce, brickBounce, paddleBounce, yDirection, xDirection, resetDirections, changeSpeed, speed }
 
+const paddleMult = 2.8 //direction angle change when the ball hits the paddle
 let speed = 6
 let yDirection = speed / 2
 let xDirection = speed / 2
@@ -71,26 +72,7 @@ function wallBounce(x) { //x is for testing values
   //   //add argument x when calling out this function
   //   //and add console logs here for testing
   // }
-
-  if (xDirection > 0 && yDirection > 0) {
-    xDirection *= -1
-    return
-  }
-
-  if (xDirection > 0 && yDirection < 0) {
-    xDirection *= -1
-    return
-  }
-
-  if (xDirection < 0 && yDirection < 0) {
-    xDirection *= -1
-    return
-  }
-
-  if (xDirection < 0 && yDirection > 0) {
-    xDirection *= -1
-    return
-  }
+  xDirection *= -1
 }
 
 function floorBounce(dir, x) { //x is for testing values
@@ -98,49 +80,44 @@ function floorBounce(dir, x) { //x is for testing values
   //   //add argument x when calling out this function
   //   //and add console logs here for testing
   // }
-  if (dir) {
-    // console.log(dir)
-    if (dir == "left") {
-      xDirection -= (speed / 2 / 4)
-    } else if (dir == "right") {
-      xDirection += (speed / 2 / 4)
+
+  yDirection *= -1
+}
+
+function paddleBounce(dir, x) {
+// if (x) {
+  //   //add argument x when calling out this function
+  //   //and add console logs here for testing
+  // }
+  if (dir == "left") {
+    xDirection -= (speed / 2 / paddleMult)
+  } else if (dir == "right") {
+    xDirection += (speed / 2 / paddleMult)
+  }
+
+  if (xDirection > 0) {
+    if (xDirection == speed) {
+      xDirection = speed - speed / 2 / paddleMult
     }
-
-    if (xDirection < 0) {
-      if (xDirection == -1 * speed) {
-        xDirection = (speed - speed / 2 / 4) * -1
-      }
-      yDirection = (speed + xDirection) * -1
-    } else {
-      if (xDirection == speed) {
-        xDirection = speed - speed / 2 / 4
-      }
-      yDirection = (speed - xDirection) * -1
+    yDirection = (speed - xDirection)
+  } else {
+    if (xDirection == -1 * speed) {
+      xDirection = (speed - speed / 2 / paddleMult) * -1
     }
-
-
-
+    yDirection = (speed + xDirection)
   }
 
-  if (xDirection > 0 && yDirection > 0) {
-    yDirection *= -1
-    return
+  
+}
+
+function brickBounce(dir, x) {
+  // if (x) {
+  //   //add argument x when calling out this function
+  //   //and add console logs here for testing
+  // }
+  if (dir == "floor") {
+    floorBounce()
   }
-
-  if (xDirection > 0 && yDirection < 0) {
-
-    yDirection *= -1
-    return
-  }
-
-  if (xDirection < 0 && yDirection < 0) {
-
-    yDirection *= -1
-    return
-  }
-
-  if (xDirection < 0 && yDirection > 0) {
-    yDirection *= -1
-    return
-  }
+  wallBounce()
+  
 }

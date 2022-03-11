@@ -1,15 +1,96 @@
 html {
-  background: whitesmoke;
+  background-image: url("../art/htmlBackground.png");
+  /* background: red; */
+}
+
+button {
+  /* display: inline-block; */
+  /* bottom: 10%; */
+  color: gainsboro;
+  border-radius: 5px;
+  border: 7px single black;
+  background-color: rgb(122, 49, 122);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.gameContainer {
+  border: 5px double red;
+  background-color: black;
+}
+
+.layout {
+  /* justify-content: space-around; */
+  /* padding: 5px; */
+  display: flex;
+  flex-direction: row-reverse;
+  /* border: 5px double white; */
+  /* left: 50%;
+  top: 50%; */
+  position: absolute;
+  transform: translate(50%, 10%);
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+
+
+  /* outline: auto; */
+  /* border: 7px double black; */
+}
+
+.statsContainer {
+  display: flex;
+  padding-left: 5px;
+  flex-direction: column;
+  justify-content: space-around;
+  /* position: absolute; */
+  /* margin-bottom: 100px; */
+  /* padding-bottom: 10px; */
+  width: 180px;
+  height: 452px;
+  border-top: 5px double red;
+  border-right: 5px double red;
+  border-bottom: 5px double red;
+  background-color: black;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+  color: gainsboro;
+}
+
+
+#levelStat {
+  
+}
+
+#difficultyStat {
+
+}
+#scoreStat {
+
+}
+
+#timerStat {
+
+}
+#livesStat {
+
+}
+
+/* -----------------------GLOBAL----------------------- */
+
+.text {
+  color: gainsboro;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /* -----------------------MAIN GRID----------------------- */
 
 .grid {
-    position: absolute;
+  /* background-image: url("../art/menuBackground.png"); */
+    position: relative;
     width: 400px;
     height: 450px;
-   /* background: url("../art/lol.png") no-repeat;
-    background-size: cover; */
     border: solid 1px black;    
   }
 
@@ -19,8 +100,8 @@ html {
     position: absolute;
     width: 55px;
     height: 13px;
-    /* background-image: url("../art/block.png"); */
-    background: red;
+    background-image: url("../art/block.png");
+    /* background: red; */
     border-radius: 5px;
   }
 
@@ -30,7 +111,8 @@ html {
     position: absolute;
     width: 80px;
     height: 13px;
-    background: purple;
+    background-image: url("../art/paddleEasy.png");
+    /* background: purple; */
     border-radius: 15px;
   }
 
@@ -38,7 +120,8 @@ html {
     position: absolute;
     width: 55px;
     height: 13px;
-    background: purple;
+    background-image: url("../art/paddleMedium.png");
+    /* background: purple; */
     border-radius: 15px;
   }
 
@@ -46,7 +129,8 @@ html {
     position: absolute;
     width: 35px;
     height: 13px;
-    background: purple;
+    background-image: url("../art/paddleHard.png");
+    /* background: purple; */
     border-radius: 15px;
   }
 
@@ -57,7 +141,8 @@ html {
     height: 25px;
     border-radius: 15px;
     position: absolute;
-    background-color: green;
+    background-image: url("../art/ballEasy.png");
+    /* background-color: green; */
   }
 
   .ballMedium {
@@ -65,7 +150,8 @@ html {
     height: 20px;
     border-radius: 15px;
     position: absolute;
-    background-color: green;
+    background-image: url("../art/ballMedium.png");
+    /* background-color: green; */
   }
 
   .ballHard {
@@ -73,39 +159,181 @@ html {
     height: 15px;
     border-radius: 15px;
     position: absolute;
-    background-color: green;
+    background-image: url("../art/ballHard.png");
+    /* background-color: green; */
   }
 
 /* -----------------------GAME STATES----------------------- */
+/* -----------------------MAIN MENU----------------------- */
 .mainMenu {
+  background-image: url("../art/menuBackground.png");
   width: 400px;
   height: 450px;
-  background: #ff0000;
+  /* background: #ff0000; */
+  display: flex;
+  flex-direction: column;
 }
 
-.gameMenu {
-  width: 400px;
-  height: 450px;
-  background: yellow;
+#mainMenuTitle {
+  color: red;
+  font-size: 300%;
+  /* font-family: fantasy; */
 }
+
+#mainMenuContinue {
+  position: absolute;
+  bottom: 5%;
+  left: 3%;
+}
+
+#mainMenuControls {
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
+}
+
+#mainMenuMade {
+  padding-top: 7%;
+  font-weight: 300;
+  /* line-break:; */
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-size: 200%;
+  color: red;
+}
+
+
+/* -----------------------CONTROLS----------------------- */
 
 .howToMenu {
+  background-image: url("../art/menuBackground.png");
+  display: flex;
+  flex-direction: column;
   width: 400px;
   height: 450px;
-  background: cyan;
 }
+#controlsLeftRight {
+  color: red;
+  padding: 10px;
+}
+
+/* #controlsImg1 {
+  
+} */
+
+#controlsUp {
+  color: red;
+  padding-left: 10px;
+  padding-top: 25px;
+}
+
+/* #controlsImg2 {
+
+} */
+
+#controlsSpace {
+  color: red; 
+  padding: 10px;
+}
+
+/* #controlsImg3 {
+
+} */
+
+#controlsMenuBack {
+  position: absolute;
+  bottom: 5%;
+  left: 3%;
+}
+
+
+/* -----------------------DIFFICULTY SELECT MENU----------------------- */
+
+.gameMenu {
+  background-image: url("../art/menuBackground.png");
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-end; */
+  /* align-items: flex-start; */
+  width: 400px;
+  height: 450px;
+}
+
+#gameMenuTitle {
+  position: absolute;
+  font-size: 19px;
+  left: 5%;
+  top: 5%;
+}
+
+#gameMenuEasy {
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  color: lightgreen;
+}
+
+#gameMenuMedium {
+  position: absolute;
+  top: 25%;
+  left: 43%;
+  color: yellow;
+}
+
+#gameMenuHard {
+  position: absolute;
+  top: 25%;
+  left: 70%;
+  color: lightcoral;
+}
+
+#gameMenuBack {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
+
+#gameMenuStart {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+
+/* -----------------------GAME----------------------- */
 
 .gameField {
   width: 400px;
   height: 450px;
-  background: grey;
+  background: url("../art/grid.png");
+  /* background: grey; */
 }
+
+/* -----------------------PAUSE----------------------- */
 
 .pause {
   width: 400px;
   height: 450px;
-  background: orange;
+  background-color: rgba(0,0,0,.5);
 }
+
+#pausedTitle {
+
+}
+
+#pausedPress {
+
+}
+
+#pausedMenu {
+
+}
+
+
+#pausedRestart {
+
+}
+
+
+/* -----------------------ROUND FINISHED----------------------- */
 
 .finish {
   width: 400px;
@@ -113,17 +341,55 @@ html {
   background: purple;
 }
 
+.finishFinal {
+  width: 400px;
+  height: 450px;
+  background: purple;
+}
+
+#finishLevel {
+
+}
+
+#finishScore {
+
+}
+
+#finishMenu {
+
+}
+
+#finishContinue {
+
+}
+
+#finishReplay {
+
+}
+
+
+/* -----------------------PLAYER DEATH----------------------- */
+
 .death {
   width: 400px;
   height: 450px;
   background: magenta;
 }
 
+#deathMenuTitle {
 
-
-
-.center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); 
 }
+
+#deathMenu {
+
+}
+
+#deathRestart {
+
+}
+
+/* -----------------------SPECIAL BUTTON ACTION----------------------- */
+
+/* .activeButton {
+
+} */
