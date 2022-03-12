@@ -3,11 +3,10 @@ export { cBricks, cWalls, cPaddle }
 
 //IMPORTS
 import { BOARD_HEIGHT, BOARD_WIDTH, } from "../game.js"
-import { changeDirection, wallBounce, floorBounce, paddleBounce } from "./direction.js"
-import { score, scoreCount } from "../actions/score.js"
+import { wallBounce, floorBounce, paddleBounce } from "./direction.js"
+import { score } from "../actions/score.js"
 import { ballPosition, paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER } from "../drawing/draw.js"
 import { levelSelector } from "../levels/levels.js"
-import { time } from "../actions/timer.js"
 import { soundBallBounce, soundBrickKill } from "../sounds/sounds.js"
 
 //BRICKS COLLISION

@@ -387,10 +387,6 @@ button {
 
 .gameMenu {
   background-image: url("../art/menuBackground.png");
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-end; */
-  /* align-items: flex-start; */
   width: 400px;
   height: 450px;
 }
@@ -439,7 +435,6 @@ button {
 #gameMenuStart {
   position: absolute;
   top: 85%;
-  /* bottom: 5%; */
   right: 5%;
 }
 
@@ -449,7 +444,6 @@ button {
   width: 400px;
   height: 450px;
   background: url("../art/grid.png");
-  /* background: grey; */
 }
 
 /* -----------------------PAUSE----------------------- */
@@ -495,7 +489,6 @@ button {
   background-image: url("../art/test.png");
   width: 400px;
   height: 450px;
-  /* background: purple; */
 }
 
 #finishLevel {
@@ -589,7 +582,6 @@ button {
   left: 10%;
   -webkit-text-stroke: black 1px;
   background-color: rgb(27,27,27,0.5);
-  /* font-weight: bold; */
 }
 
 #deathMenu {

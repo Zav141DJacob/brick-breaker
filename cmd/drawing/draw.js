@@ -16,9 +16,7 @@ import { changeDirection } from "../collisions/direction.js"
 import { grid } from "../game.js"
 import { levelNr, levelSelector } from "../levels/levels.js"
 import { soundBallDeath } from "../sounds/sounds.js"
-import { difficulty, pause } from "../states/states.js"
-import { events } from "../listeners/listeners.js"
-
+import { difficulty } from "../states/states.js"
 
 const replayButton = document.createElement("button")
 const continueButton = document.createElement("button")

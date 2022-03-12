@@ -40,7 +40,7 @@ function resetDirections() {
   xDirection = speed / 2
 }
 
-
+//CHANGE BALL DIRECTION 
 function changeDirection(x) { //x is for testing values
 
   // if (x) {

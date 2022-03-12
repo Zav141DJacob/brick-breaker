@@ -7,7 +7,7 @@ export {
 
 //IMPORTS
 import { mainMenu } from "./states/states.js"
-import { createBall, drawBlock, createPaddle, gameField, drawGame } from "./drawing/draw.js"
+import { createBall, drawBlock, createPaddle } from "./drawing/draw.js"
 import { createEventListeners } from "./listeners/listeners.js"
 
 ///GLOBAL VARIABLES
