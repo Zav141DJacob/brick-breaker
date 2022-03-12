@@ -1,12 +1,17 @@
+//EXPORTS
 export { keyDown, keyUp }
+
+//IMPORTS
 import { drawPaddle, paddlePosition, PADDLE_WIDTH } from "../drawing/draw.js"
 import { BOARD_WIDTH, } from "../game.js"
 
+//TO TOGGLE PADDLE UPDATE
 let keydown = " "
 function keyDown(event) {
   keydown = event
 }
 
+//TO UNTOGGLE PADDLE UPDATE
 function keyUp() {
   keydown = '';
 }

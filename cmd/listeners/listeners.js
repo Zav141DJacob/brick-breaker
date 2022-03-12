@@ -1,9 +1,11 @@
+//EXPORTS
+export { createEventListeners, events, events2, multyFunction }
+
+//IMPORTS
 import { ballMover } from "../actions/moveBall.js";
 import { keyDown, keyUp } from "../actions/movePaddle.js";
 import { timer } from "../actions/timer.js";
 import { pause, unPause } from "../states/states.js";
-export { createEventListeners, events, events2, multyFunction }
-
 
 //event dictionaries
 let events = {
@@ -37,7 +39,6 @@ function onEventFired2(event) {
     events2[event.which](event.which);
   }
 }
-
 
 //MULTY FUNCTION FOR SAME KEY
 function multyFunction() {

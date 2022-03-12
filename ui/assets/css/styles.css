@@ -1,3 +1,22 @@
+/* -----------------------GLOBAL----------------------- */
+
+.layout {
+  /* justify-content: space-around; */
+  /* padding: 5px; */
+  display: flex;
+  flex-direction: row-reverse;
+  /* border: 5px double white; */
+  /* left: 50%;
+  top: 50%; */
+  position: absolute;
+  transform: translate(50%, 10%);
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+  
+  
+  /* outline: auto; */
+  /* border: 7px double black; */
+}
 html {
   background-image: url("../art/htmlBackground.png");
   /* background: red; */
@@ -14,28 +33,12 @@ button {
   font-family: 'Courier New', Courier, monospace;
 }
 
-.gameContainer {
-  border: 5px double red;
-  background-color: black;
+.text {
+  color: gainsboro;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.layout {
-  /* justify-content: space-around; */
-  /* padding: 5px; */
-  display: flex;
-  flex-direction: row-reverse;
-  /* border: 5px double white; */
-  /* left: 50%;
-  top: 50%; */
-  position: absolute;
-  transform: translate(50%, 10%);
-  /* justify-content: flex-start; */
-  /* align-items: flex-start; */
-
-
-  /* outline: auto; */
-  /* border: 7px double black; */
-}
+/* -----------------------STATS----------------------- */
 
 .statsContainer {
   display: flex;
@@ -63,30 +66,27 @@ button {
 }
 
 #difficultyTitle {
-
+  
 }
 #scoreTitle {
-
+  
 }
 
 #timerTitle {
-
+  
 }
 #livesTitle {
-
-}
-
-/* -----------------------GLOBAL----------------------- */
-
-.text {
-  color: gainsboro;
-  font-family: 'Courier New', Courier, monospace;
+  
 }
 
 /* -----------------------MAIN GRID----------------------- */
 
+.gameContainer {
+  border: 5px double red;
+  background-color: black;
+}
+
 .grid {
-  /* background-image: url("../art/menuBackground.png"); */
     position: relative;
     width: 400px;
     height: 450px;

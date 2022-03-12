@@ -1,12 +1,14 @@
-import { LEVEL_STATUS } from "../game.js"
-
+//EXPORTS
 export { levelSelector, resetBricks, resetBricksLevel, nextLevel, levelNr }
+
+//IMPORTS
+import { LEVEL_STATUS } from "../game.js"
 
 //BLOCK INFO
 const BLOCK_WIDTH = 55
 const BLOCK_HEIGHT = 13
 
-//TO GET EVERY BLOCK CORNER LOCATION
+//TO GET EVERY BLOCKS CORNER LOCATION
 class Block {
   constructor(xAxis, yAxis) {
     this.bottomLeft = [xAxis, yAxis]
@@ -16,12 +18,14 @@ class Block {
   }
 }
 
-//FUNCTION TO RESET LEVELSELECTOR
+//TO RESET LEVELSELECTOR
 function resetBricks() {
   levelNr = 1
   levelSelector = [...level1]
 }
 
+
+//TO RESET CURRENT LEVEL
 function resetBricksLevel() {
   if (levelNr == 1) {
     levelSelector = [...level1]
@@ -43,11 +47,12 @@ function resetBricksLevel() {
   }
 }
 
+//TO GO TO NEXT LEVEL
 function nextLevel() {
-if (levelNr == 1) {
+  if (levelNr == 1) {
     levelNr = 2
     LEVEL_STATUS.innerHTML = `2`
-  } else if (levelNr == 2){
+  } else if (levelNr == 2) {
     levelNr = 3
     LEVEL_STATUS.innerHTML = `3`
   } else if (levelNr == 3) {
@@ -116,6 +121,7 @@ const level1 = [
   new Block(237, 300),
 ]
 
+//level2
 const level2 = [
   new Block(9, 420),
   new Block(9, 290),
@@ -134,6 +140,7 @@ const level2 = [
   new Block(334, 240),
 ]
 
+//level3
 const level3 = [
   new Block(100, 420),
   new Block(240, 420),
@@ -156,6 +163,7 @@ const level3 = [
   new Block(100, 155),
 ]
 
+//level4
 const level4 = [
   new Block(9, 420),
   new Block(74, 420),
@@ -176,10 +184,11 @@ const level4 = [
   new Block(334, 240),
   new Block(334, 180),
   new Block(334, 120),
-  new Block(74,180),
+  new Block(74, 180),
   new Block(269, 180),
 ]
 
+//level5
 const level5 = [
   new Block(9, 180),
   new Block(74, 180),
@@ -213,21 +222,15 @@ const level5 = [
 let levelNr = 1
 let levelSelector
 
+//LEVEL SELECT
 if (levelNr == 1) {
   levelSelector = [...level1]
-}
-if (levelNr == 2) {
+} else if (levelNr == 2) {
   levelSelector = [...level2]
-}
-
-if (levelNr == 3) {
+} else if (levelNr == 3) {
   levelSelector = [...level3]
-}
-
-if (levelNr == 4) {
+} else if (levelNr == 4) {
   levelSelector = [...level4]
-}
-
-if (levelNr == 5) {
+} else if (levelNr == 5) {
   levelSelector = [...level5]
 }

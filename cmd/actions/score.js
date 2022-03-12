@@ -1,10 +1,16 @@
-export { score, resetScore, changeScoreDefault, scoreCount, setPreviousScore, savePreviousScore }
-import { SCORE_DISPLAY, HIGH_SCORE_DISPLAY } from "../game.js"
-import { levelSelector } from "../levels/levels.js"
+//EXPORTS
+export {
+    score, resetScore, changeScoreDefault, scoreCount,
+    setPreviousScore, savePreviousScore
+}
+
+//IMPORTS
+import { SCORE_DISPLAY } from "../game.js"
 import { difficulty } from "../states/states.js"
 import { time } from "./timer.js"
 
 let scoreDefault = 1
+
 function changeScoreDefault() {
     if (difficulty == "easy") {
         scoreDefault = 1
@@ -14,10 +20,9 @@ function changeScoreDefault() {
         scoreDefault = 3
     }
 }
+
 let scoreCount = 0
 let scoreSaver = 0
-
-//let highScoreCount = 0
 
 //RESET SCORE
 function resetScore() {
@@ -38,15 +43,5 @@ function savePreviousScore() {
 //SCORE
 function score() {
     scoreCount += (10 * scoreDefault / (time / 100 + 0.1))
-    /*     if (levelSelector.length <= 0) {
-            highScore()
-        } */
     SCORE_DISPLAY.innerHTML = `${scoreCount.toFixed(2)}`
 }
-
-/* function highScore() {
-    if (scoreCount >= highScoreCount) {
-        highScoreCount = scoreCount
-        HIGH_SCORE_DISPLAY.innerHTML = `High Score: ${highScoreCount}`
-    }
-} */

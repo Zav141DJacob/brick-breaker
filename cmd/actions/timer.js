@@ -1,4 +1,7 @@
+//EXPORTS
 export { timer, timerID, time, resetTimer }
+
+//IMPORTS
 import { TIMER_STATUS } from "../game.js"
 import { ballPosition } from "../drawing/draw.js"
 
@@ -16,6 +19,7 @@ function timer() {
   timerID = setInterval(myTimer, 1000);
 }
 
+//TIMER++
 function myTimer() {
   time++
   TIMER_STATUS.innerHTML = `${time}`

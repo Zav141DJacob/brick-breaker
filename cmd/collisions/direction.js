@@ -1,7 +1,13 @@
+//EXPORTS
+export {
+  changeDirection, wallBounce, floorBounce, brickBounce, paddleBounce,
+  yDirection, xDirection, resetDirections, changeSpeed, speed
+}
+
+//IMPORTS
 import { ballPosition } from "../drawing/draw.js"
 import { difficulty } from "../states/states.js"
 
-export { changeDirection, wallBounce, floorBounce, brickBounce, paddleBounce, yDirection, xDirection, resetDirections, changeSpeed, speed }
 
 const paddleMult = 2.8 //direction angle change when the ball hits the paddle
 let speed = 6
@@ -85,7 +91,7 @@ function floorBounce(dir, x) { //x is for testing values
 }
 
 function paddleBounce(dir, x) {
-// if (x) {
+  // if (x) {
   //   //add argument x when calling out this function
   //   //and add console logs here for testing
   // }
@@ -106,8 +112,6 @@ function paddleBounce(dir, x) {
     }
     yDirection = (speed + xDirection)
   }
-
-  
 }
 
 function brickBounce(dir, x) {
@@ -119,5 +123,4 @@ function brickBounce(dir, x) {
     floorBounce()
   }
   wallBounce()
-  
 }

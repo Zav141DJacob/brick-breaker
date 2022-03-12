@@ -1,4 +1,7 @@
+//EXPORTS
 export { ballMover, moveBall }
+
+//IMPORTS
 import { drawBall, removeBall, ballPosition } from "../drawing/draw.js"
 import { cPaddle, cWalls, cBricks } from "../collisions/collisions.js"
 import { events } from "../listeners/listeners.js"
@@ -22,7 +25,7 @@ function moveBall() {
   drawBall()
   cWalls()
   cBricks()
-  
+
   let ballFrame = requestAnimationFrame(moveBall)
   //CHECK FOR LIVES/RESPAWN
   if (ballPosition[1] <= 0 && livesCount > 0) {

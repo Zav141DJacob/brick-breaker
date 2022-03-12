@@ -1,3 +1,4 @@
+//EXPORT
 export {
     createBall, drawBall, drawBlock, createPaddle, drawPaddle, drawMainMenu,
     drawPause, startButton, removeBall, BALL_START, ballPosition, drawFinishMenu,
@@ -5,6 +6,8 @@ export {
     paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER, resetBall, resetPaddle, continueButton,
     drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats
 }
+
+//IMPORTS
 import { livesCount } from "../actions/lives.js"
 import { ballMover } from "../actions/moveBall.js"
 import { scoreCount } from "../actions/score.js"
@@ -79,7 +82,9 @@ function drawBall() {
 }
 
 function removeBall() {
-    soundBallDeath()
+    if (levelSelector.length > 0) {
+        soundBallDeath()
+    }
     let ball
     if (difficulty == "easy") {
         ball = document.querySelector(".ballEasy")

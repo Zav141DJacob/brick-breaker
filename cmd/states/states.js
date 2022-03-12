@@ -1,4 +1,7 @@
+//EXPORTS
 export { pause, unPause, mainMenu, removeMainMenu, pauseStatus, finished, death, difficulty }
+
+//IMPORTS
 import {
   drawPause, drawMainMenu, startButton, drawFinishMenu, drawDeathMenu,
   menuButton, replayButton, drawGame, gameField, resetBall, resetPaddle, continueButton,
@@ -16,6 +19,7 @@ import { changeSpeed, resetDirections } from "../collisions/direction.js"
 import { changeLives, resetLives } from "../actions/lives.js"
 import { soundBallBounce, soundBallDeath, soundButtonClick, soundFinalFinish, soundPlayerDeath, soundRoundEnd, soundRoundStart } from "../sounds/sounds.js"
 
+//DIFFICULTY STATE
 let difficulty = "easy"
 
 //OVERALL GAME FIELD
@@ -247,6 +251,7 @@ function removeFinished() {
     grid.removeChild(menu)
   } else {
     const menu = document.querySelector(".finishFinal")
+    grid.removeChild(menu)
   }
 }
 
