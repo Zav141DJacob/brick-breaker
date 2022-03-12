@@ -24,9 +24,13 @@ const easyButton = document.createElement("button")
 const mediumButton = document.createElement("button")
 const hardButton = document.createElement("button")
 const startButton = document.createElement("button")
+const text0 = document.createElement("p1")
 const text1 = document.createElement("p1")
 const text2 = document.createElement("p1")
 const text3 = document.createElement("p1")
+const imgDiv1 = document.createElement("div")
+const imgDiv2 = document.createElement("div")
+const imgDiv3 = document.createElement("div")
 
 //BALL FUNCTIONS
 let BALL_DIAMETER = 25
@@ -227,18 +231,28 @@ function drawHowToMenu() {
     const menu = document.createElement("div")
     menu.classList.add("howToMenu")
     grid.appendChild(menu)
+    text0.id = "controlsTitle"
+    text0.innerHTML = "Controls"
+    text0.classList.add("text")
+    menu.appendChild(text0)
     text1.id = "controlsLeftRight"
     text1.classList.add("text")
-    text1.innerHTML = "Left and Right arrows move the paddle left or right"
+    text1.innerHTML = "Left and Right arrows move the paddle"
     menu.appendChild(text1)
+    imgDiv1.id = "controlsImg1"
+    menu.appendChild(imgDiv1)
     text2.id = "controlsUp"
     text1.classList.add("text")
     text2.innerHTML = "Up arrow launches the ball"
     menu.appendChild(text2)
+    imgDiv2.id = "controlsImg2"
+    menu.appendChild(imgDiv2)
     text3.id = "controlsSpace"
     text3.innerHTML = "Space pauses the game"
     text3.classList.add("text")
     menu.appendChild(text3)
+    imgDiv3.id = "controlsImg3"
+    menu.appendChild(imgDiv3)
     startButton.id = "controlsMenuBack"
     startButton.innerHTML = "Back"
     menu.appendChild(startButton)
@@ -304,18 +318,18 @@ function drawFinishMenu() {
         const menu = document.createElement("div")
         menu.classList.add("finishFinal")
         grid.appendChild(menu)
-        text1.id = "finishLevel"
+        text1.id = "finishFinalLevel"
         text1.innerHTML = "Game completed"
         text1.classList.add("text")
         menu.appendChild(text1)
-        text2.id = "finishScore"
+        text2.id = "finishFinalScore"
         text2.innerHTML = `Final score: ${scoreCount.toFixed(2)}`
         text2.classList.add("text")
         menu.appendChild(text2)
-        menuButton.id = "finishMenu"
+        menuButton.id = "finishFinalMenu"
         menuButton.innerHTML = "Back to Main menu"
         menu.appendChild(menuButton)
-        replayButton.id = "finishReplay"
+        replayButton.id = "finishFinalReplay"
         replayButton.innerHTML = "Replay the level"
         menu.appendChild(replayButton)
     }
