@@ -27,6 +27,7 @@ let scoreSaver = 0
 
 //RESET SCORE
 function resetScore() {
+    scoreSaver = 0
     scoreCount = 0
     SCORE_DISPLAY.innerHTML = scoreCount
 }
