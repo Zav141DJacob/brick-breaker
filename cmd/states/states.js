@@ -1,4 +1,4 @@
-export { pause, unPause, mainMenu, removeMainMenu, pauseStatus, finished, death, difficulty, fps }
+export { pause, unPause, mainMenu, removeMainMenu, pauseStatus, finished, death, difficulty }
 import {
   drawPause, drawMainMenu, startButton, drawFinishMenu, drawDeathMenu,
   menuButton, replayButton, drawGame, gameField, resetBall, resetPaddle, continueButton,
@@ -7,20 +7,16 @@ import {
 
 import { events, multyFunction } from "../listeners/listeners.js"
 import { resetTimer, timer, timerID } from "../actions/timer.js"
-import { grid, game, LEVEL_STATUS, DIFFICULTY_STATUS } from "../game.js"
+import { grid, game, LEVEL_STATUS, DIFFICULTY_STATUS, SCORE_DISPLAY } from "../game.js"
 import { ballMover } from "../actions/moveBall.js"
 import { keyDown, keyUp } from "../actions/movePaddle.js"
-import { changeScoreDefault, resetScore } from "../actions/score.js"
+import { changeScoreDefault, resetScore, savePreviousScore, scoreCount, setPreviousScore } from "../actions/score.js"
 import { nextLevel, resetBricks, resetBricksLevel, levelNr } from "../levels/levels.js"
 import { changeSpeed, resetDirections } from "../collisions/direction.js"
 import { changeLives, resetLives } from "../actions/lives.js"
 import { soundBallBounce, soundBallDeath, soundButtonClick, soundFinalFinish, soundPlayerDeath, soundRoundEnd, soundRoundStart } from "../sounds/sounds.js"
 
 let difficulty = "easy"
-
-function fps() {
-  requestAnimationFrame(fps)
-}
 
 //OVERALL GAME FIELD
 function removeGame() {
@@ -50,7 +46,6 @@ function gameRestarter() {
   resetBall()
   resetPaddle()
   resetTimer()
-  resetScore()
   resetBricksLevel()
   resetDirections()
   resetLives()
@@ -83,7 +78,7 @@ function gameMenu() {
   drawGameMenu()
   startButton.onclick = function () {
     soundButtonClick()
-    LEVEL_STATUS.innerHTML = "Level: 1"
+    LEVEL_STATUS.innerHTML = "1"
     drawGame()
     removeGameMenu()
     changeSpeed()
@@ -97,32 +92,41 @@ function gameMenu() {
   easyButton.onclick = function () {
     soundButtonClick()
     difficulty = "easy"
-    DIFFICULTY_STATUS.innerHTML = "Difficulty: Easy"
+    DIFFICULTY_STATUS.innerHTML = "Easy"
     changeBallDiameter()
     changeSpeed()
     changePaddleStats()
     changeLives()
     changeScoreDefault()
+    mediumButton.classList.remove("activeButton")
+    hardButton.classList.remove("activeButton")
+    easyButton.classList.add("activeButton")
   }
   mediumButton.onclick = function () {
     soundButtonClick()
     difficulty = "medium"
-    DIFFICULTY_STATUS.innerHTML = "Difficulty: Medium"
+    DIFFICULTY_STATUS.innerHTML = "Medium"
     changeBallDiameter()
     changeSpeed()
     changePaddleStats()
     changeLives()
     changeScoreDefault()
+    hardButton.classList.remove("activeButton")
+    easyButton.classList.remove("activeButton")
+    mediumButton.classList.add("activeButton")
   }
   hardButton.onclick = function () {
     soundButtonClick()
     difficulty = "hard"
-    DIFFICULTY_STATUS.innerHTML = "Difficulty: Hard"
+    DIFFICULTY_STATUS.innerHTML = "Hard"
     changeBallDiameter()
     changeSpeed()
     changePaddleStats()
     changeLives()
     changeScoreDefault()
+    mediumButton.classList.remove("activeButton")
+    easyButton.classList.remove("activeButton")
+    hardButton.classList.add("activeButton")
   }
 }
 
@@ -164,13 +168,15 @@ function pause() {
     pauseStatus = false
     delete events.Space
     events[32] = pause
-    LEVEL_STATUS.innerHTML = "Level: 0"
+    LEVEL_STATUS.innerHTML = "0"
     removeGame()
     fullResetter()
     mainMenu()
   }
 
   replayButton.onclick = function () {
+    setPreviousScore()
+    SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
     soundButtonClick()
     pauseStatus = false
     delete events.Space
@@ -209,12 +215,14 @@ function finished() {
   delete events[39]
   menuButton.onclick = function () {
     soundButtonClick()
-    LEVEL_STATUS.innerHTML = "Level: 0"
+    LEVEL_STATUS.innerHTML = "0"
     removeFinished()
     fullResetter()
     mainMenu()
   }
   replayButton.onclick = function () {
+    setPreviousScore()
+    SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
     soundButtonClick()
     drawGame()
     removeFinished()
@@ -223,6 +231,7 @@ function finished() {
   }
 
   continueButton.onclick = function () {
+    savePreviousScore()
     soundButtonClick()
     drawGame()
     removeFinished()
@@ -233,8 +242,12 @@ function finished() {
 }
 
 function removeFinished() {
-  const menu = document.querySelector(".finish")
-  grid.removeChild(menu)
+  if (levelNr < 5) {
+    const menu = document.querySelector(".finish")
+    grid.removeChild(menu)
+  } else {
+    const menu = document.querySelector(".finishFinal")
+  }
 }
 
 
@@ -249,12 +262,14 @@ function death() {
   delete events[32]
   menuButton.onclick = function () {
     soundButtonClick()
-    LEVEL_STATUS.innerHTML = "Level: 0"
+    LEVEL_STATUS.innerHTML = "0"
     removeDeathMenu()
     fullResetter()
     mainMenu()
   }
   replayButton.onclick = function () {
+    setPreviousScore()
+    SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
     soundButtonClick()
     drawGame()
     gameRestarter()

@@ -46,17 +46,16 @@ function resetBricksLevel() {
 function nextLevel() {
 if (levelNr == 1) {
     levelNr = 2
-    console.log(levelNr)  
-    LEVEL_STATUS.innerHTML = `Level: 2`
+    LEVEL_STATUS.innerHTML = `2`
   } else if (levelNr == 2){
     levelNr = 3
-    LEVEL_STATUS.innerHTML = `Level: 3`
+    LEVEL_STATUS.innerHTML = `3`
   } else if (levelNr == 3) {
     levelNr = 4
-    LEVEL_STATUS.innerHTML = `Level: 4`
+    LEVEL_STATUS.innerHTML = `4`
   } else if (levelNr == 4) {
     levelNr = 5
-    LEVEL_STATUS.innerHTML = `Level: 5`
+    LEVEL_STATUS.innerHTML = `5`
   }
 }
 

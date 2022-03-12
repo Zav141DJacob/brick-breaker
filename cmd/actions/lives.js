@@ -6,13 +6,13 @@ let livesCount = 3
 function changeLives() {
     if (difficulty == "easy") {
         livesCount = 3
-        LIVES_STATUS.innerHTML = `Extra lives: ${livesCount}`
+        LIVES_STATUS.innerHTML = `${livesCount}`
     } else if (difficulty == "medium") {
         livesCount = 2
-        LIVES_STATUS.innerHTML = `Extra lives: ${livesCount}`
+        LIVES_STATUS.innerHTML = `${livesCount}`
     } else if (difficulty == "hard") {
         livesCount = 1
-        LIVES_STATUS.innerHTML = `Extra lives: ${livesCount}`
+        LIVES_STATUS.innerHTML = `${livesCount}`
     }
 }
 
@@ -25,11 +25,11 @@ function resetLives() {
     } else if (difficulty == "hard") {
         livesCount = 1
     }
-    LIVES_STATUS.innerHTML = `Extra lives: ${livesCount}`
+    LIVES_STATUS.innerHTML = `${livesCount}`
 }
 
 //LIVES
 function lives() {
     livesCount--
-    LIVES_STATUS.innerHTML = `Extra lives: ${livesCount}`
+    LIVES_STATUS.innerHTML = `${livesCount}`
 } 

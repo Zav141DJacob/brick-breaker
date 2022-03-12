@@ -8,7 +8,6 @@ button {
   /* bottom: 10%; */
   color: gainsboro;
   border-radius: 5px;
-  border: 7px single black;
   background-color: rgb(122, 49, 122);
   text-transform: uppercase;
   font-weight: 700;
@@ -59,21 +58,21 @@ button {
 }
 
 
-#levelStat {
+#levelTitle {
   
 }
 
-#difficultyStat {
+#difficultyTitle {
 
 }
-#scoreStat {
+#scoreTitle {
 
 }
 
-#timerStat {
+#timerTitle {
 
 }
-#livesStat {
+#livesTitle {
 
 }
 
@@ -390,6 +389,6 @@ button {
 
 /* -----------------------SPECIAL BUTTON ACTION----------------------- */
 
-/* .activeButton {
-
-} */
+.activeButton {
+  border: solid 2px yellow;
+}

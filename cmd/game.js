@@ -5,7 +5,7 @@ export {
 }
 
 //IMPORTS
-import { mainMenu, fps } from "./states/states.js"
+import { mainMenu } from "./states/states.js"
 import { createBall, drawBlock, createPaddle, gameField, drawGame } from "./drawing/draw.js"
 import { createEventListeners } from "./listeners/listeners.js"
 import { changeSpeed, speed, xDirection, yDirection } from "./collisions/direction.js"
@@ -24,6 +24,7 @@ const LIVES_STATUS = document.querySelector("#lives")
 const TIMER_STATUS = document.querySelector("#timer")
 const HIGH_SCORE_DISPLAY = document.querySelector("#highScore")
 const DIFFICULTY_STATUS = document.querySelector("#difficulty")
+
 
 //MAIN MENU FUNCTION AT PAGE LOAD
 function intro() {

@@ -283,7 +283,7 @@ function drawFinishMenu() {
         text1.classList.add("text")
         menu.appendChild(text1)
         text2.id = "finishScore"
-        text2.innerHTML = `Score: ${scoreCount}`
+        text2.innerHTML = `Score: ${scoreCount.toFixed(2)}`
         text2.classList.add("text")
         menu.appendChild(text2)
         menuButton.id = "finishMenu"
@@ -304,7 +304,7 @@ function drawFinishMenu() {
         text1.classList.add("text")
         menu.appendChild(text1)
         text2.id = "finishScore"
-        text2.innerHTML = `Final score: ${scoreCount}`
+        text2.innerHTML = `Final score: ${scoreCount.toFixed(2)}`
         text2.classList.add("text")
         menu.appendChild(text2)
         menuButton.id = "finishMenu"

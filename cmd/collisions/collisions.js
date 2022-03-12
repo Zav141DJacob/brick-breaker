@@ -1,7 +1,7 @@
 export { cBricks, cWalls, cPaddle }
 import { BOARD_HEIGHT, BOARD_WIDTH,  } from "../game.js"
 import { changeDirection, wallBounce, floorBounce, paddleBounce, brickBounce } from "./direction.js"
-import { score } from "../actions/score.js"
+import { score, scoreCount } from "../actions/score.js"
 import { ballPosition, paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER } from "../drawing/draw.js"
 import { levelSelector } from "../levels/levels.js"
 import { time } from "../actions/timer.js"
