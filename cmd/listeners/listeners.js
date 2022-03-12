@@ -2,7 +2,7 @@
 export { createEventListeners, events, events2, multyFunction }
 
 //IMPORTS
-import { ballMover } from "../actions/moveBall.js";
+import { ballMover, changePauseEnabler} from "../actions/moveBall.js";
 import { keyDown, keyUp } from "../actions/movePaddle.js";
 import { timer } from "../actions/timer.js";
 import { pause, unPause } from "../states/states.js";
@@ -12,7 +12,6 @@ let events = {
   37: keyDown,
   39: keyDown,
   38: multyFunction,
-  32: pause,
 };
 
 let events2 = {
@@ -28,7 +27,6 @@ function createEventListeners() {
 
 //TO CHECK FROM DICTIONARIES IF IT EVENT EXISTS FOR PRESSED BUTTON
 function onEventFired(event) {
-  // console.log(event.which)
   if (events[event.which]) {
     events[event.which](event.which);
   }
@@ -40,8 +38,11 @@ function onEventFired2(event) {
   }
 }
 
+
 //MULTY FUNCTION FOR SAME KEY
 function multyFunction() {
+  changePauseEnabler()
+  events[32] = pause
   ballMover()
   timer()
 }

@@ -4,7 +4,8 @@ export {
     drawPause, startButton, removeBall, BALL_START, ballPosition, drawFinishMenu,
     drawDeathMenu, menuButton, replayButton, drawGame, gameField,
     paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER, resetBall, resetPaddle, continueButton,
-    drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats
+    drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats,
+    
 }
 
 //IMPORTS
@@ -15,7 +16,8 @@ import { changeDirection } from "../collisions/direction.js"
 import { grid } from "../game.js"
 import { levelNr, levelSelector } from "../levels/levels.js"
 import { soundBallDeath } from "../sounds/sounds.js"
-import { difficulty } from "../states/states.js"
+import { difficulty, pause } from "../states/states.js"
+import { events } from "../listeners/listeners.js"
 
 
 const replayButton = document.createElement("button")

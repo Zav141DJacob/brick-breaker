@@ -38,6 +38,3 @@ const update = () => {
   requestAnimationFrame(update);
 }
 requestAnimationFrame(update);
-
-
-

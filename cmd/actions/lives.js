@@ -3,7 +3,7 @@ export { lives, livesCount, resetLives, changeLives }
 
 //IMPORTS
 import { LIVES_STATUS } from "../game.js"
-import { difficulty } from "../states/states.js"
+import { difficulty, pause } from "../states/states.js"
 
 let livesCount = 3
 //CHANGES LIVES BASED ON DIFFICULTY

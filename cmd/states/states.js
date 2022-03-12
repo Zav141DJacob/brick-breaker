@@ -11,7 +11,7 @@ import {
 import { events, multyFunction } from "../listeners/listeners.js"
 import { resetTimer, timer, timerID } from "../actions/timer.js"
 import { grid, game, LEVEL_STATUS, DIFFICULTY_STATUS, SCORE_DISPLAY } from "../game.js"
-import { ballMover } from "../actions/moveBall.js"
+import { ballMover, changePauseEnabler } from "../actions/moveBall.js"
 import { keyDown, keyUp } from "../actions/movePaddle.js"
 import { changeScoreDefault, resetScore, savePreviousScore, scoreCount, setPreviousScore } from "../actions/score.js"
 import { nextLevel, resetBricks, resetBricksLevel, levelNr } from "../levels/levels.js"
@@ -31,7 +31,7 @@ function removeGame() {
 function fullResetter() {
   events[37] = keyDown
   events[39] = keyDown
-  events[32] = pause
+  delete events[32]
   events[38] = multyFunction
   resetBall()
   resetPaddle()
@@ -40,12 +40,13 @@ function fullResetter() {
   resetBricks()
   resetDirections()
   resetLives()
+  changePauseEnabler()
 }
 
 function gameRestarter() {
   events[37] = keyDown
   events[39] = keyDown
-  events[32] = pause
+  delete events[32]
   events[38] = multyFunction
   resetBall()
   resetPaddle()
@@ -53,6 +54,7 @@ function gameRestarter() {
   resetBricksLevel()
   resetDirections()
   resetLives()
+  changePauseEnabler()
 }
 
 
@@ -170,7 +172,6 @@ function pause() {
   menuButton.onclick = function () {
     soundButtonClick()
     pauseStatus = false
-    delete events.Space
     events[32] = pause
     LEVEL_STATUS.innerHTML = "0"
     removeGame()
@@ -183,7 +184,6 @@ function pause() {
     SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
     soundButtonClick()
     pauseStatus = false
-    delete events.Space
     events[32] = pause
     removeGame()
     drawGame()
@@ -212,11 +212,13 @@ function finished() {
   } else {
     soundRoundEnd()
   }
+  changePauseEnabler()
   clearInterval(timerID)
   removeGame()
   drawFinishMenu()
   delete events[37]
   delete events[39]
+  delete events[32]
   menuButton.onclick = function () {
     soundButtonClick()
     LEVEL_STATUS.innerHTML = "0"
