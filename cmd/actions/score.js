@@ -35,13 +35,11 @@ function resetScore() {
 //SAVE PREVIOUS ROUND SCORE
 function savePreviousScore() {
     scoreSaver = scoreCount
-    console.log(scoreSaver)
 }
 
 //SET PREVIOUS ROUND SCORE AS CURRENT SCORE IF RESTART
 function setPreviousScore() {
     scoreCount = scoreSaver
-    console.log(scoreCount)
 }
 
 

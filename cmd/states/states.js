@@ -5,11 +5,12 @@ export { pause, unPause, mainMenu, removeMainMenu, pauseStatus, finished, death,
 import {
   drawPause, drawMainMenu, startButton, drawFinishMenu, drawDeathMenu,
   menuButton, replayButton, drawGame, gameField, resetBall, resetPaddle, continueButton,
-  drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats
+  drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats, highScores,
+  drawLeaderBoardMenu, leaderboardEasy, leaderboardMedium, leaderboardHard, highScoreSubmit, drawFinalModal
 } from "../drawing/draw.js"
 
 import { events, multyFunction } from "../listeners/listeners.js"
-import { resetTimer, timer, timerID } from "../actions/timer.js"
+import { resetTimer, setPreviousTimer, timer, timerID, miniRestartTimer, timeSaver } from "../actions/timer.js"
 import { grid, game, LEVEL_STATUS, DIFFICULTY_STATUS, SCORE_DISPLAY } from "../game.js"
 import { ballMover, changePauseEnabler } from "../actions/moveBall.js"
 import { keyDown, keyUp } from "../actions/movePaddle.js"
@@ -50,11 +51,12 @@ function gameRestarter() {
   events[38] = multyFunction
   resetBall()
   resetPaddle()
-  resetTimer()
+  /* resetTimer() */
   resetBricksLevel()
   resetDirections()
   resetLives()
   changePauseEnabler()
+  miniRestartTimer()
 }
 
 
@@ -66,6 +68,11 @@ function mainMenu() {
     gameMenu()
     removeMainMenu()
   }
+  highScores.onclick = function () {
+    soundButtonClick()
+    leaderBoardMenu()
+    removeMainMenu()
+  }
   continueButton.onclick = function () {
     soundButtonClick()
     howToMenu()
@@ -75,6 +82,40 @@ function mainMenu() {
 
 function removeMainMenu() {
   const menu = document.querySelector(".mainMenu")
+  grid.removeChild(menu)
+}
+
+//STATE LEADERBOARD
+function leaderBoardMenu() {
+  drawLeaderBoardMenu()
+  leaderboardEasy.onclick = function () {
+    soundButtonClick()
+    leaderboardMedium.classList.remove("activeButton")
+    leaderboardHard.classList.remove("activeButton")
+    leaderboardEasy.classList.add("activeButton")
+  }
+  leaderboardMedium.onclick = function () {
+    soundButtonClick()
+    leaderboardHard.classList.remove("activeButton")
+    leaderboardEasy.classList.remove("activeButton")
+    leaderboardMedium.classList.add("activeButton")
+  }
+  leaderboardHard.onclick = function () {
+    soundButtonClick()
+    leaderboardMedium.classList.remove("activeButton")
+    leaderboardEasy.classList.remove("activeButton")
+    leaderboardHard.classList.add("activeButton")
+  }
+  continueButton.onclick = function () {
+    soundButtonClick()
+    removeLeaderBoardMenu()
+    mainMenu()
+  }
+
+}
+
+function removeLeaderBoardMenu() {
+  const menu = document.querySelector(".leaderBoardMenu")
   grid.removeChild(menu)
 }
 
@@ -180,6 +221,7 @@ function pause() {
   }
 
   replayButton.onclick = function () {
+    setPreviousTimer()
     setPreviousScore()
     SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
     soundButtonClick()
@@ -227,6 +269,7 @@ function finished() {
     mainMenu()
   }
   replayButton.onclick = function () {
+    setPreviousTimer()
     setPreviousScore()
     SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
     soundButtonClick()
@@ -245,16 +288,33 @@ function finished() {
     gameRestarter()
     game()
   }
+  highScoreSubmit.onclick = function () {
+    modal()
+  }
 }
 
 function removeFinished() {
-  if (levelNr < 5) {
+  if (levelNr < 1) {
     const menu = document.querySelector(".finish")
     grid.removeChild(menu)
   } else {
     const menu = document.querySelector(".finishFinal")
     grid.removeChild(menu)
   }
+}
+
+function modal() {
+  drawFinalModal()
+}
+
+function removeModal() {
+    const menu = document.querySelector(".modal")
+    grid.removeChild(menu)
+}
+
+function removeSubmitButton() {
+  const menu = document.querySelector("#submitHigh")
+  grid.removeChild(menu)
 }
 
 
