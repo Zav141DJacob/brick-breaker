@@ -313,7 +313,7 @@ function removeModal() {
 }
 
 function removeSubmitButton() {
-  const menu = document.querySelector("#submitHigh")
+  const menu = document.querySelector("#")
   grid.removeChild(menu)
 }
 
