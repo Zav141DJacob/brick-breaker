@@ -162,7 +162,9 @@ button {
     position: absolute;
     width: 55px;
     height: 13px;
-    background-image: url("../art/block.png");
+    background-image: url("../art/tileSheet.png"); 
+    background-position: 0px -74px;
+    /* background-image: url("../art/block.png"); */
     /* background: red; */
     border-radius: 5px;
   }
@@ -173,8 +175,8 @@ button {
     position: absolute;
     width: 80px;
     height: 13px;
-    background-image: url("../art/paddleEasy.png");
-    /* background: purple; */
+    background-image: url("../art/tileSheet.png") ; 
+    background-position: 0px -99px;
     border-radius: 15px;
   }
 
@@ -182,8 +184,8 @@ button {
     position: absolute;
     width: 55px;
     height: 13px;
-    background-image: url("../art/paddleMedium.png");
-    /* background: purple; */
+    background-image: url("../art/tileSheet.png"); 
+    background-position: 0px -124px;
     border-radius: 15px;
   }
 
@@ -191,8 +193,8 @@ button {
     position: absolute;
     width: 35px;
     height: 13px;
-    background-image: url("../art/paddleHard.png");
-    /* background: purple; */
+    background-image: url("../art/tileSheet.png"); 
+    background-position: 0px -149px;
     border-radius: 15px;
   }
 
@@ -203,8 +205,8 @@ button {
     height: 25px;
     border-radius: 15px;
     position: absolute;
-    background-image: url("../art/ballEasy.png");
-    /* background-color: green; */
+    background-image: url("../art/tileSheet.png"); 
+    background-position: 0px 0px;
   }
 
   .ballMedium {
@@ -212,8 +214,8 @@ button {
     height: 20px;
     border-radius: 15px;
     position: absolute;
-    background-image: url("../art/ballMedium.png");
-    /* background-color: green; */
+    background-image: url("../art/tileSheet.png"); 
+    background-position: 0px -25px;
   }
 
   .ballHard {
@@ -221,14 +223,15 @@ button {
     height: 15px;
     border-radius: 15px;
     position: absolute;
-    background-image: url("../art/ballHard.png");
-    /* background-color: green; */
+    background-image: url("../art/tileSheet.png"); 
+    background-position: 0px -50px;
   }
 
 /* -----------------------GAME STATES----------------------- */
 /* -----------------------MAIN MENU----------------------- */
 .mainMenu {
-  background-image: url("../art/menuBackground.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -174px;
   width: 400px;
   height: 450px;
   /* background: #ff0000; */
@@ -286,7 +289,8 @@ button {
 /* -----------------------CONTROLS----------------------- */
 
 .howToMenu {
-  background-image: url("../art/menuBackground.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -174px;
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -388,7 +392,8 @@ button {
 /* -----------------------LEADERBOARD----------------------- */
 
 .leaderBoardMenu {
-  background-image: url("../art/menuBackground.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -174px;
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -479,7 +484,8 @@ height: 13px;
 /* -----------------------DIFFICULTY SELECT MENU----------------------- */
 
 .gameMenu {
-  background-image: url("../art/menuBackground.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -174px;
   width: 400px;
   height: 450px;
 }
@@ -536,7 +542,8 @@ height: 13px;
 .gameField {
   width: 400px;
   height: 450px;
-  background: url("../art/grid.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -624px;
 }
 
 /* -----------------------PAUSE----------------------- */
@@ -579,7 +586,8 @@ height: 13px;
 /* -----------------------ROUND FINISHED----------------------- */
 
 .finish {
-  background-image: url("../art/test.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -624px;
   width: 400px;
   height: 450px;
 }
@@ -635,7 +643,8 @@ height: 13px;
 .finishFinal {
   width: 400px;
   height: 450px;
-  background-image: url("../art/test.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -624px;
 }
 
 #finishFinalLevel {
@@ -691,7 +700,8 @@ height: 13px;
   
   width: 400px;
   height: 450px;
-  background-image: url("../art/grid.png");
+  background-image: url("../art/tileSheet.png"); 
+  background-position: 0px -624px;
 }
 
 #deathMenuTitle {

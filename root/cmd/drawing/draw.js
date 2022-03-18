@@ -356,7 +356,7 @@ function drawPause() {
 
 //FINISH
 function drawFinishMenu() {
-    if (levelNr < 1) {
+    if (levelNr < 5) {
         const menu = document.createElement("div")
         menu.classList.add("finish")
         grid.appendChild(menu)

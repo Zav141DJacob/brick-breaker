@@ -294,7 +294,7 @@ function finished() {
 }
 
 function removeFinished() {
-  if (levelNr < 1) {
+  if (levelNr < 5) {
     const menu = document.querySelector(".finish")
     grid.removeChild(menu)
   } else {
