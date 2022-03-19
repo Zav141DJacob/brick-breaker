@@ -8,7 +8,7 @@ export {
 import { ballPosition } from "../drawing/draw.js"
 import { difficulty } from "../states/states.js"
 
-//direction angle change when the ball hits the paddle
+//DIRECTION ANGLE CHANGE WHEN THE BALL HITS THE PADDLE
 const paddleMult = 2.8 
 
 let speed = 6
@@ -75,7 +75,7 @@ function changeDirection(x) { //x is for testing values
   }
 }
 
-//Function to change the balls X direction
+//FUNCTION TO CHANGE THE BALLS X DIRECTION
 function wallBounce(x) { //x is for testing values
 
   // if (x) {
@@ -86,7 +86,7 @@ function wallBounce(x) { //x is for testing values
   xDirection *= -1
 }
 
-//Function to change the balls y direction
+//FUNCTION TO CHANGE THE BALLS Y DIRECTION
 function floorBounce(x) { //x is for testing values
 
   // if (x) {
@@ -97,7 +97,7 @@ function floorBounce(x) { //x is for testing values
   yDirection *= -1
 }
 
-//Function to change the balls angle when bouncing off the paddle
+//FUNCTION TO CHANGE THE BALLS ANGLE WHEN BOUNCING OFF THE PADDLE
 function paddleBounce(dir, x) { //x is for testing values
 
   // if (x) {

@@ -16,11 +16,12 @@ import { scoreCount } from "../actions/score.js"
 import { changeDirection } from "../collisions/direction.js"
 import { grid } from "../game.js"
 import { levelNr, levelSelector } from "../levels/levels.js"
-import { soundBallDeath } from "../sounds/sounds.js"
+import { soundBallDeath, soundButtonClick } from "../sounds/sounds.js"
 import { difficulty } from "../states/states.js"
 import { time, timeSaver } from "../actions/timer.js"
 import { response } from "../requests/requests.js"
 
+//CONSTANTS
 const replayButton = document.createElement("button")
 const continueButton = document.createElement("button")
 const easyButton = document.createElement("button")
@@ -43,6 +44,7 @@ const text2 = document.createElement("p1")
 const text3 = document.createElement("p1")
 const text4 = document.createElement("p1")
 const page = document.createElement("p1")
+
 const imgDiv1 = document.createElement("div")
 const imgDiv2 = document.createElement("div")
 const imgDiv3 = document.createElement("div")
@@ -50,6 +52,7 @@ const searchDiv = document.createElement("div")
 const leaderBoardDiv1 = document.createElement("div")
 const leaderBoardDiv2 = document.createElement("div")
 const leaderBoardDiv3 = document.createElement("div")
+
 let text_field = document.createElement('input');
 
 //FINAL TIME
@@ -130,7 +133,6 @@ function removeBall() {
     }
 }
 
-
 //BLOCK FUNCTIONS
 function drawBlock() {
     for (let i = 0; i < levelSelector.length; i++) {
@@ -141,7 +143,6 @@ function drawBlock() {
         gameField.appendChild(block)
     }
 }
-
 
 //PADDLE FUNCTIONS
 const paddle = document.createElement("div")
@@ -200,7 +201,6 @@ function drawPaddle() {
     paddle.style.left = paddlePosition[0] + "px"
     paddle.style.bottom = paddlePosition[1] + "px"
 }
-
 
 //MENU
 function drawMainMenu() {
@@ -311,12 +311,18 @@ function drawLeaderBoardMenu() {
     leaderBoardDiv1.appendChild(leaderBoardDiv3)
     BackData.id = "btn-prev"
     BackData.innerHTML = "Prev"
+    BackData.onclick = function () {
+        soundButtonClick()
+    }
     leaderBoardDiv1.appendChild(BackData)
     page.id = "page"
     page.innerHTML = "1"
     leaderBoardDiv1.appendChild(page)
     NextData.id = "btn-next"
     NextData.innerHTML = "Next"
+    NextData.onclick = function () {
+        soundButtonClick()
+    }
     leaderBoardDiv1.appendChild(NextData)
     continueButton.id = "leaderBoardBack"
     continueButton.innerHTML = "Back to Main menu"
@@ -325,7 +331,6 @@ function drawLeaderBoardMenu() {
 
 }
 
-
 //GENERAL GAMEFIELD
 function drawGame() {
     const game = document.createElement("div")
@@ -333,7 +338,6 @@ function drawGame() {
     grid.appendChild(game)
     gameField = document.querySelector(".gameField")
 }
-
 
 //PAUSE
 const menuButton = document.createElement("button")
@@ -364,43 +368,37 @@ function drawFinishMenu() {
         const menu = document.createElement("div")
         menu.classList.add("finish")
         grid.appendChild(menu)
-
         text1.id = "finishLevel"
         text1.innerHTML = "Level completed"
         text1.classList.add("text")
         menu.appendChild(text1)
-
         text2.id = "finishScore"
         text2.innerHTML = `Score: ${Math.round(scoreCount)}`
         text2.classList.add("text")
         menu.appendChild(text2)
-
         minutes = Math.floor(time / 60)
         seconds = time - minutes * 60
         text0.id = "finishTime"
         text0.classList.add("text")
+        //TIME FORMATING
         if (time < 10) {
             text0.innerHTML = `Level time: ${minutes}:0${seconds}`
         } else {
             text0.innerHTML = `Level time: ${minutes}:${seconds}`
         }
         menu.appendChild(text0)
-
         minutes = Math.floor(timeSaver / 60)
         seconds = timeSaver - minutes * 60
         text3.id = "finishTotalTime"
         text3.innerHTML = `Total time: ${minutes}:${seconds}`
         text3.classList.add("text")
         menu.appendChild(text3)
-
         menuButton.id = "finishMenu"
         menuButton.innerHTML = "Back to Main menu"
         menu.appendChild(menuButton)
-
         replayButton.id = "finishReplay"
         replayButton.innerHTML = "Replay the level"
         menu.appendChild(replayButton)
-
         continueButton.id = "finishContinue"
         continueButton.innerHTML = "Next level"
         menu.appendChild(continueButton)
@@ -420,6 +418,7 @@ function drawFinishMenu() {
         minutes = Math.floor(timeSaver / 60)
         seconds = timeSaver - minutes * 60
         text3.id = "finishFinalTime"
+        //TIME FORMATING
         if (seconds < 10) {
             text3.innerHTML = `Total time: ${minutes}:0${seconds}`
         } else {
@@ -439,6 +438,7 @@ function drawFinishMenu() {
     }
 }
 
+//FINAL SUBMIT MODAL
 function drawFinalModal() {
     const menu = document.createElement("div")
     menu.classList.add("modal")
@@ -460,9 +460,9 @@ function drawFinalModal() {
     text_field.setAttribute('input', "");
     text_field.setAttribute("maxLength", 10)
     searchDiv.appendChild(text_field);
-
 }
 
+//FINAL RESPONSE FROM API
 function drawResponse() {
     const menu = document.querySelector(".finishFinal")
     const menu1 = document.createElement("div")
@@ -472,8 +472,9 @@ function drawResponse() {
     menu.appendChild(menu1)
 }
 
+//HTML TABLE WITH DATA IN LEADERBOARD
 function drawTable() {
-
+    //IF RESPONSE IS EMPTY
     if (response == null) {
         let divShowData = document.getElementById('leaderBoardBottomBar');
         text4.id = "noData"
@@ -485,10 +486,11 @@ function drawTable() {
             divShowData.removeChild(oldTable)
         }
         BackData.onclick = function () {
+            soundButtonClick()
         }
 
         NextData.onclick = function () {
-
+            soundButtonClick()
         }
         return
     }
@@ -519,9 +521,11 @@ function drawTable() {
         perPage = perPage ? perPage : 1
         const pages = Math.ceil(totalItems / perPage)
         BackData.onclick = function () {
+            soundButtonClick()
             displayItems(pageNr = pageNr - 1, perPage)
         }
         NextData.onclick = function () {
+            soundButtonClick()
             displayItems(pageNr = pageNr + 1, perPage)
         }
         document.getElementById('pagination').innerHTML = pagination
@@ -548,7 +552,6 @@ function drawTable() {
         }
 
         const slicedItems = response.slice(index, offSet)
-
         const html = slicedItems.map(item =>
             `<tr>
                 <td>${item.Rank}</td>
@@ -556,7 +559,6 @@ function drawTable() {
                 <td>${item.Score}</td>
                 <td>${item.Time}</td>
               </tr>`)
-
         document.querySelector('#container tbody').innerHTML = html.join('')
 
     }
@@ -564,9 +566,9 @@ function drawTable() {
     let perPage = 5
     displayPageNav(perPage)
     displayItems(1, perPage)
-
 }
 
+//DRAWING OF THE ACTUALY HTML TABLE 
 function drawMainTable() {
     const selector = document.querySelector("#leaderBoardBottomBar")
     const container = document.createElement("div")
@@ -600,7 +602,6 @@ function drawMainTable() {
     divpag.id = "pagination"
     table.appendChild(divpag)
 }
-
 
 //DEATH
 function drawDeathMenu() {

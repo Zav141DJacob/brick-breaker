@@ -61,7 +61,6 @@ function gameRestarter() {
   miniRestartTimer()
 }
 
-
 //STATE MAINMENU
 function mainMenu() {
   drawMainMenu()
@@ -110,7 +109,7 @@ function leaderBoardMenu() {
     leaderboardMedium.classList.remove("activeButton")
     leaderboardEasy.classList.remove("activeButton")
     leaderboardHard.classList.add("activeButton")
-    
+
   }
   continueButton.onclick = function () {
     soundButtonClick()
@@ -124,12 +123,6 @@ function removeLeaderBoardMenu() {
   const menu = document.querySelector(".leaderBoardMenu")
   grid.removeChild(menu)
 }
-
-function removeNoData() {
-  const menu = document.querySelector("#noData")
-  grid.removeChild(menu)
-}
-
 
 //STATE GAMEMENU
 function gameMenu() {
@@ -188,12 +181,10 @@ function gameMenu() {
   }
 }
 
-
 function removeGameMenu() {
   const menu = document.querySelector(".gameMenu")
   grid.removeChild(menu)
 }
-
 
 //STATE HOWTOMENU
 function howToMenu() {
@@ -209,7 +200,6 @@ function removeHowToMenu() {
   const menu = document.querySelector(".howToMenu")
   grid.removeChild(menu)
 }
-
 
 //STATE PAUSED
 let pauseStatus = false
@@ -256,7 +246,6 @@ function unPause() {
   ballMover()
   timer()
 }
-
 
 //STATE FINISHED
 function finished() {
@@ -329,6 +318,7 @@ function modal() {
   }
 }
 
+//REMOVE FINAL SUBMIT MODAL
 function removeModal() {
   const menu = document.querySelector(".modal")
   grid.removeChild(menu)
@@ -336,12 +326,12 @@ function removeModal() {
   grid.removeChild(menu1)
 }
 
+//REMOVE FINAL SUBMIT BUTTON AFTER SUBMITTING SCORE
 function removeSubmitButton() {
   const finalMenu = document.querySelector(".finishFinal")
   const menu = document.querySelector("#submitHigh")
   finalMenu.removeChild(menu)
 }
-
 
 //STATE DEATH
 function death() {

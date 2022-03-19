@@ -14,7 +14,7 @@ let timerID
 let minutes 
 let seconds
 
-//RESET TIMER
+//FULL RESET TIMER
 function resetTimer() {
   time = 0
   timeSaver = 0
@@ -24,6 +24,7 @@ function resetTimer() {
   TIMER_STATUS.innerHTML = `${minutes}:0${seconds}`
 }
 
+//TO RESTART LEVEL TIMER
 function miniRestartTimer() {
   time = 0
   minutes = Math.floor(time / 60)
@@ -31,11 +32,13 @@ function miniRestartTimer() {
   TIMER_STATUS.innerHTML = `${minutes}:0${seconds}`
 }
 
+//SAVE LEVEL TIME TO MEMORYDB
 function savePreviousTimer() {
   timeSaver += time
   previousRoundTime = time
 }
 
+//LEVEL RESTART SETS MEMORYDB VALUES
 function setPreviousTimer() {
   timeSaver -= previousRoundTime
 }

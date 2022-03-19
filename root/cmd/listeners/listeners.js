@@ -7,7 +7,7 @@ import { keyDown, keyUp } from "../actions/movePaddle.js";
 import { timer } from "../actions/timer.js";
 import { pause, unPause } from "../states/states.js";
 
-//event dictionaries
+//EVENT DICTIONARIES
 let events = {
   37: keyDown,
   39: keyDown,

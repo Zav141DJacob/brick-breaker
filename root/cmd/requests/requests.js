@@ -1,27 +1,32 @@
+//EXPORTS
 export {
     getFormValue, resetFormValue, newPostScores,
     newGetEasy, newGetMedium, newGetHard, response
 }
 
+//IMPORTS
 import { difficulty } from "../states/states.js"
 import { scoreCount } from "../actions/score.js"
 import { timeSaver } from "../actions/timer.js"
 import { drawResponse, drawTable } from "../drawing/draw.js"
 
+//GLOBAL VARIABLES
 let minutes
 let seconds
 let name
+let response
+
+//GETTING FORM VALUE FOR USERNAME
 function getFormValue(id) {
     name = document.getElementById(id).value;
 }
 
+//RESETTING FOR VALUE 
 function resetFormValue() {
     name = ""
 }
-let response
 
-
-
+//API CALL TO POST NEW DATA OF SCORES
 function newPostScores() {
     minutes = Math.floor(timeSaver / 60)
     seconds = timeSaver - minutes * 60
@@ -48,15 +53,10 @@ function newPostScores() {
     xhr.onload = function () {
         response = xhr.response
         drawResponse()
-/*         const menu = document.querySelector(".finishFinal")
-        const menu1 = document.createElement("div")
-        menu1.id = "modalResponse"
-        menu1.classList.add("text")
-        menu1.innerHTML = response
-        menu.appendChild(menu1) */
     };
 }
 
+//API CALL TO GET HIGHSCORES OF "EASY" DIFFICULTY
 function newGetEasy() {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8081/data/easy", true);
@@ -68,6 +68,7 @@ function newGetEasy() {
     };
 }
 
+//API CALL TO GET HIGHSCORES OF "MEDIUM" DIFFICULTY
 function newGetMedium() {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8081/data/medium", true);
@@ -79,6 +80,7 @@ function newGetMedium() {
     };
 }
 
+//API CALL TO GET HIGHSCORES OF "HARD" DIFFICULTY
 function newGetHard() {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8081/data/hard", true);

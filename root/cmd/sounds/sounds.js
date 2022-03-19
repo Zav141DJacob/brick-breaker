@@ -24,41 +24,41 @@ class Sound {
 
 let mySound
 
-//ball bounce
+//BALL BOUNCE
 function soundBallBounce() {
     mySound = new Sound("../../../ui/assets/sounds/ballBounce.mp3")
     mySound.play()
 
 }
 
-//ball death
+//BALL DEATH
 function soundBallDeath() {
     mySound = new Sound("../../../ui/assets/sounds/ballDeath.mp3")
     mySound.play()
 
 }
 
-//Brick destroyed
+//BRICK DESTROYED
 function soundBrickKill() {
     mySound = new Sound("../../../ui/assets/sounds/brickKill.mp3")
     mySound.play()
 }
 
-//Button click
+//BUTTON CLICK
 function soundButtonClick() {
     mySound = new Sound("../../../ui/assets/sounds/buttonClick.mp3")
     mySound.play()
 
 }
 
-//Final round finish
+//FINAL ROUND FINISH
 function soundFinalFinish() {
     mySound = new Sound("../../../ui/assets/sounds/finalFinish.mp3")
     mySound.play()
 
 }
 
-//Death
+//DEATH
 function soundPlayerDeath() {
     mySound = new Sound("../../../ui/assets/sounds/playerDeath.mp3")
     mySound.play()
@@ -66,13 +66,13 @@ function soundPlayerDeath() {
 
 }
 
-//Round finish
+//ROUND FINISH
 function soundRoundEnd() {
     mySound = new Sound("../../../ui/assets/sounds/roundEnd.mp3")
     mySound.play()
 }
 
-//Round start
+//ROUND START
 function soundRoundStart() {
     mySound = new Sound("../../../ui/assets/sounds/roundStart.mp3")
     mySound.play()
