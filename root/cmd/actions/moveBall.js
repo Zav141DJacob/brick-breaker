@@ -9,6 +9,7 @@ import { speed, xDirection, yDirection } from "../collisions/direction.js"
 import { death, finished, pause, pauseStatus } from "../states/states.js"
 import { lives, livesCount } from "./lives.js"
 import { levelSelector } from "../levels/levels.js"
+import { savePreviousTimer } from "./timer.js"
 
 let pauseEnabler
 function changePauseEnabler() {
@@ -61,6 +62,7 @@ function moveBall() {
   if (levelSelector.length <= 0) {
     cancelAnimationFrame(ballFrame)
     removeBall()
+    savePreviousTimer()
     finished()
   }
 }

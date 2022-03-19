@@ -5,7 +5,8 @@ export {
     drawDeathMenu, menuButton, replayButton, drawGame, gameField,
     paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER, resetBall, resetPaddle, continueButton,
     drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats,
-    
+    highScores, drawLeaderBoardMenu, leaderboardEasy, leaderboardMedium, leaderboardHard, highScoreSubmit, drawFinalModal,
+    highScoreSubmitCancel, highScoreSubmitModal, drawResponse, drawTable
 }
 
 //IMPORTS
@@ -17,20 +18,43 @@ import { grid } from "../game.js"
 import { levelNr, levelSelector } from "../levels/levels.js"
 import { soundBallDeath } from "../sounds/sounds.js"
 import { difficulty } from "../states/states.js"
+import { time, timeSaver } from "../actions/timer.js"
+import { response } from "../requests/requests.js"
 
 const replayButton = document.createElement("button")
 const continueButton = document.createElement("button")
 const easyButton = document.createElement("button")
 const mediumButton = document.createElement("button")
 const hardButton = document.createElement("button")
+const leaderboardEasy = document.createElement("button")
+const leaderboardMedium = document.createElement("button")
+const leaderboardHard = document.createElement("button")
 const startButton = document.createElement("button")
+const highScores = document.createElement("button")
+const highScoreSubmit = document.createElement("button")
+const highScoreSubmitModal = document.createElement("button")
+const highScoreSubmitCancel = document.createElement("button")
+const BackData = document.createElement("button")
+const NextData = document.createElement("button")
+
 const text0 = document.createElement("p1")
 const text1 = document.createElement("p1")
 const text2 = document.createElement("p1")
 const text3 = document.createElement("p1")
+const text4 = document.createElement("p1")
+const page = document.createElement("p1")
 const imgDiv1 = document.createElement("div")
 const imgDiv2 = document.createElement("div")
 const imgDiv3 = document.createElement("div")
+const searchDiv = document.createElement("div")
+const leaderBoardDiv1 = document.createElement("div")
+const leaderBoardDiv2 = document.createElement("div")
+const leaderBoardDiv3 = document.createElement("div")
+let text_field = document.createElement('input');
+
+//FINAL TIME
+let minutes
+let seconds
 
 //BALL FUNCTIONS
 let BALL_DIAMETER = 25
@@ -190,6 +214,9 @@ function drawMainMenu() {
     startButton.id = "mainMenuContinue"
     startButton.innerHTML = "Continue"
     menu.appendChild(startButton)
+    highScores.id = "mainMenuLeaderboard"
+    highScores.innerHTML = "Leaderboard"
+    menu.appendChild(highScores)
     continueButton.id = "mainMenuControls"
     continueButton.innerHTML = "Controls"
     menu.appendChild(continueButton)
@@ -258,6 +285,46 @@ function drawHowToMenu() {
     menu.appendChild(startButton)
 }
 
+//LEADERBOARD
+function drawLeaderBoardMenu() {
+    const menu = document.createElement("div")
+    menu.classList.add("leaderBoardMenu")
+    grid.appendChild(menu)
+    text0.id = "leaderBoardTitle"
+    text0.innerHTML = "Leaderboard"
+    text0.classList.add("text")
+    menu.appendChild(text0)
+    leaderBoardDiv1.id = "leaderBoardDiv"
+    menu.appendChild(leaderBoardDiv1)
+    leaderBoardDiv2.id = "leaderBoardTopBar"
+    leaderBoardDiv1.appendChild(leaderBoardDiv2)
+    leaderboardEasy.id = "leaderBoardEasy"
+    leaderboardEasy.innerHTML = "Easy"
+    leaderBoardDiv2.appendChild(leaderboardEasy)
+    leaderboardMedium.id = "leaderBoardMedium"
+    leaderboardMedium.innerHTML = "Medium"
+    leaderBoardDiv2.appendChild(leaderboardMedium)
+    leaderboardHard.id = "leaderBoardHard"
+    leaderboardHard.innerHTML = "Hard"
+    leaderBoardDiv2.appendChild(leaderboardHard)
+    leaderBoardDiv3.id = "leaderBoardBottomBar"
+    leaderBoardDiv1.appendChild(leaderBoardDiv3)
+    BackData.id = "btn-prev"
+    BackData.innerHTML = "Prev"
+    leaderBoardDiv1.appendChild(BackData)
+    page.id = "page"
+    page.innerHTML = "1"
+    leaderBoardDiv1.appendChild(page)
+    NextData.id = "btn-next"
+    NextData.innerHTML = "Next"
+    leaderBoardDiv1.appendChild(NextData)
+    continueButton.id = "leaderBoardBack"
+    continueButton.innerHTML = "Back to Main menu"
+    menu.appendChild(continueButton)
+    drawMainTable()
+
+}
+
 
 //GENERAL GAMEFIELD
 function drawGame() {
@@ -297,23 +364,47 @@ function drawFinishMenu() {
         const menu = document.createElement("div")
         menu.classList.add("finish")
         grid.appendChild(menu)
+
         text1.id = "finishLevel"
         text1.innerHTML = "Level completed"
         text1.classList.add("text")
         menu.appendChild(text1)
+
         text2.id = "finishScore"
-        text2.innerHTML = `Score: ${scoreCount.toFixed(2)}`
+        text2.innerHTML = `Score: ${Math.round(scoreCount)}`
         text2.classList.add("text")
         menu.appendChild(text2)
+
+        minutes = Math.floor(time / 60)
+        seconds = time - minutes * 60
+        text0.id = "finishTime"
+        text0.classList.add("text")
+        if (time < 10) {
+            text0.innerHTML = `Level time: ${minutes}:0${seconds}`
+        } else {
+            text0.innerHTML = `Level time: ${minutes}:${seconds}`
+        }
+        menu.appendChild(text0)
+
+        minutes = Math.floor(timeSaver / 60)
+        seconds = timeSaver - minutes * 60
+        text3.id = "finishTotalTime"
+        text3.innerHTML = `Total time: ${minutes}:${seconds}`
+        text3.classList.add("text")
+        menu.appendChild(text3)
+
         menuButton.id = "finishMenu"
         menuButton.innerHTML = "Back to Main menu"
         menu.appendChild(menuButton)
+
         replayButton.id = "finishReplay"
         replayButton.innerHTML = "Replay the level"
         menu.appendChild(replayButton)
+
         continueButton.id = "finishContinue"
         continueButton.innerHTML = "Next level"
         menu.appendChild(continueButton)
+
     } else {
         const menu = document.createElement("div")
         menu.classList.add("finishFinal")
@@ -323,16 +414,191 @@ function drawFinishMenu() {
         text1.classList.add("text")
         menu.appendChild(text1)
         text2.id = "finishFinalScore"
-        text2.innerHTML = `Final score: ${scoreCount.toFixed(2)}`
+        text2.innerHTML = `Final score: ${Math.round(scoreCount)}`
         text2.classList.add("text")
         menu.appendChild(text2)
+        minutes = Math.floor(timeSaver / 60)
+        seconds = timeSaver - minutes * 60
+        text3.id = "finishFinalTime"
+        if (seconds < 10) {
+            text3.innerHTML = `Total time: ${minutes}:0${seconds}`
+        } else {
+            text3.innerHTML = `Total time: ${minutes}:${seconds}`
+        }
+        text3.classList.add("text")
+        menu.appendChild(text3)
         menuButton.id = "finishFinalMenu"
         menuButton.innerHTML = "Back to Main menu"
         menu.appendChild(menuButton)
         replayButton.id = "finishFinalReplay"
         replayButton.innerHTML = "Replay the level"
         menu.appendChild(replayButton)
+        highScoreSubmit.id = "submitHigh"
+        highScoreSubmit.innerHTML = `Submit (${Math.round(scoreCount)})`
+        menu.appendChild(highScoreSubmit)
     }
+}
+
+function drawFinalModal() {
+    const menu = document.createElement("div")
+    menu.classList.add("modal")
+    grid.appendChild(menu)
+    highScoreSubmitModal.id = "submitScore"
+    highScoreSubmitModal.innerHTML = "Submit"
+    menu.appendChild(highScoreSubmitModal)
+    highScoreSubmitCancel.id = "cancelScore"
+    highScoreSubmitCancel.innerHTML = "Cancel"
+    menu.appendChild(highScoreSubmitCancel)
+    const modalOverlay = document.createElement("div")
+    modalOverlay.className = "modal-js-overlay"
+    grid.appendChild(modalOverlay)
+    searchDiv.id = "modalDiv"
+    menu.appendChild(searchDiv)
+    text_field.id = "scoreUserName"
+    text_field.setAttribute('type', 'text');
+    text_field.setAttribute('placeholder', 'Enter username');
+    text_field.setAttribute('input', "");
+    text_field.setAttribute("maxLength", 10)
+    searchDiv.appendChild(text_field);
+
+}
+
+function drawResponse() {
+    const menu = document.querySelector(".finishFinal")
+    const menu1 = document.createElement("div")
+    menu1.id = "modalResponse"
+    menu1.classList.add("text")
+    menu1.innerHTML = response
+    menu.appendChild(menu1)
+}
+
+function drawTable() {
+
+    if (response == null) {
+        let divShowData = document.getElementById('leaderBoardBottomBar');
+        text4.id = "noData"
+        text4.innerHTML = "Not available"
+        text4.classList.add("text")
+        divShowData.appendChild(text4)
+        if (document.contains(document.getElementById("container"))) {
+            let oldTable = document.getElementById("container")
+            divShowData.removeChild(oldTable)
+        }
+        BackData.onclick = function () {
+        }
+
+        NextData.onclick = function () {
+
+        }
+        return
+    }
+
+    if (document.contains(document.getElementById("noData"))) {
+        let divShowData = document.getElementById('leaderBoardBottomBar');
+        let oldTable = document.getElementById("noData")
+        divShowData.removeChild(oldTable)
+        drawMainTable()
+    }
+
+    let j = 2
+    for (let i in response) {
+        delete response[i].Difficulty
+        if (i == 0) {
+            response[i].Rank = 1
+        } else {
+            response[i].Rank = j
+            j++
+        }
+    }
+
+    let pageNr = 1
+
+    const displayPageNav = perPage => {
+        let pagination = ""
+        const totalItems = response.length
+        perPage = perPage ? perPage : 1
+        const pages = Math.ceil(totalItems / perPage)
+        BackData.onclick = function () {
+            displayItems(pageNr = pageNr - 1, perPage)
+        }
+        NextData.onclick = function () {
+            displayItems(pageNr = pageNr + 1, perPage)
+        }
+        document.getElementById('pagination').innerHTML = pagination
+    }
+
+    let minimum = 1
+    let maximum = Math.ceil(response.length / 5)
+    const displayItems = (page = 1, perPage = 2) => {
+
+        let index, offSet
+
+        if (pageNr < minimum) { pageNr = minimum }
+        if (pageNr >= maximum) { pageNr = maximum - 1; }
+
+        if (page == 1 || page <= 0) {
+            index = 0
+            offSet = perPage
+        } else if (page > response.length) {
+            index = page - 1
+            offSet = response.length
+        } else {
+            index = page * perPage - perPage
+            offSet = index + perPage
+        }
+
+        const slicedItems = response.slice(index, offSet)
+
+        const html = slicedItems.map(item =>
+            `<tr>
+                <td>${item.Rank}</td>
+                <td>${item.Username}</td>
+                <td>${item.Score}</td>
+                <td>${item.Time}</td>
+              </tr>`)
+
+        document.querySelector('#container tbody').innerHTML = html.join('')
+
+    }
+
+    let perPage = 5
+    displayPageNav(perPage)
+    displayItems(1, perPage)
+
+}
+
+function drawMainTable() {
+    const selector = document.querySelector("#leaderBoardBottomBar")
+    const container = document.createElement("div")
+    container.id = "container"
+    selector.appendChild(container)
+    const table = document.createElement("table")
+    container.appendChild(table)
+    const thread = document.createElement("thread")
+    table.appendChild(thread)
+    const tr = document.createElement("tr")
+    thread.appendChild(tr)
+    const th1 = document.createElement("th")
+    th1.innerHTML = "Rank"
+    th1.id = "rankBoard"
+    tr.appendChild(th1)
+    const th2 = document.createElement("th")
+    th2.innerHTML = "Username"
+    th2.id = "usernameBoard"
+    tr.appendChild(th2)
+    const th3 = document.createElement("th")
+    th3.innerHTML = "Score"
+    th3.id = "scoreBoard"
+    tr.appendChild(th3)
+    const th4 = document.createElement("th")
+    th4.innerHTML = "Time"
+    th4.id = "timeBoard"
+    tr.appendChild(th4)
+    const tbody = document.createElement("tbody")
+    table.appendChild(tbody)
+    const divpag = document.createElement("div")
+    divpag.id = "pagination"
+    table.appendChild(divpag)
 }
 
 

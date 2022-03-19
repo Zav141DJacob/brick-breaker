@@ -35,18 +35,16 @@ function resetScore() {
 //SAVE PREVIOUS ROUND SCORE
 function savePreviousScore() {
     scoreSaver = scoreCount
-    console.log(scoreSaver)
 }
 
 //SET PREVIOUS ROUND SCORE AS CURRENT SCORE IF RESTART
 function setPreviousScore() {
     scoreCount = scoreSaver
-    console.log(scoreCount)
 }
 
 
 //SCORE
 function score() {
     scoreCount += (10 * scoreDefault / (time / 100 + 0.1))
-    SCORE_DISPLAY.innerHTML = `${scoreCount.toFixed(2)}`
+    SCORE_DISPLAY.innerHTML = `${Math.round(scoreCount)}`
 }
