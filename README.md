@@ -8,7 +8,7 @@ Game: BrickBreaker
 
 -Clone the repo (obviousy).
 
--Run `index.html` file with Live Server Extension.
+-Run `server.go` file by running the command `go run server.go`.
 
 -Enjoy good game of BrickBreaker
 
