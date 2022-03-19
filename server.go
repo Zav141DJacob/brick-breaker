@@ -13,8 +13,8 @@ import (
 	"strconv"
 )
 
+//SCORE SORTER
 type ScoreSorter []Data
-
 func (a ScoreSorter) Len() int           { return len(a) }
 func (a ScoreSorter) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a ScoreSorter) Less(i, j int) bool { return a[i].Score > a[j].Score }
@@ -26,8 +26,10 @@ type Data struct {
 	Time       string `json: "time"`
 }
 
+//MEMORY DATABASE
 var memoryDB []Data
 
+//NUMBER ORDINALIZER
 func Ordinalize(num int) string {
 
 	var ordinalDictionary = map[int]string{
@@ -43,7 +45,7 @@ func Ordinalize(num int) string {
 		9: "th",
 	}
 
-	// math.Abs() is to convert negative number to positive
+	// MATH.ABS() IS TO CONVERT NEGATIVE NUMBER TO POSITIVE
 	floatNum := math.Abs(float64(num))
 	positiveNum := int(floatNum)
 
@@ -211,7 +213,7 @@ func main() {
 	http.HandleFunc("/data/hard", getResponseHard)
 
 	fmt.Printf("Starting server at port 8080\n")
-	if err := http.ListenAndServe(":8081", nil); err != nil {
+	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
 }

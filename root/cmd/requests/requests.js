@@ -31,7 +31,7 @@ function newPostScores() {
     minutes = Math.floor(timeSaver / 60)
     seconds = timeSaver - minutes * 60
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8081/data", open);
+    xhr.open("POST", "http://localhost:8080/data", open);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.responseType = ""
     if (seconds < 10) {
@@ -59,7 +59,7 @@ function newPostScores() {
 //API CALL TO GET HIGHSCORES OF "EASY" DIFFICULTY
 function newGetEasy() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8081/data/easy", true);
+    xhr.open("GET", "http://localhost:8080/data/easy", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send()
     xhr.onload = function () {
@@ -71,7 +71,7 @@ function newGetEasy() {
 //API CALL TO GET HIGHSCORES OF "MEDIUM" DIFFICULTY
 function newGetMedium() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8081/data/medium", true);
+    xhr.open("GET", "http://localhost:8080/data/medium", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send()
     xhr.onload = function () {
@@ -83,7 +83,7 @@ function newGetMedium() {
 //API CALL TO GET HIGHSCORES OF "HARD" DIFFICULTY
 function newGetHard() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8081/data/hard", true);
+    xhr.open("GET", "http://localhost:8080/data/hard", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send()
     xhr.onload = function () {
