@@ -6,7 +6,8 @@ import {
   drawPause, drawMainMenu, startButton, drawFinishMenu, drawDeathMenu,
   menuButton, replayButton, drawGame, gameField, resetBall, resetPaddle, continueButton,
   drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats, highScores,
-  drawLeaderBoardMenu, leaderboardEasy, leaderboardMedium, leaderboardHard, highScoreSubmit, drawFinalModal
+  drawLeaderBoardMenu, leaderboardEasy, leaderboardMedium, leaderboardHard, highScoreSubmit, drawFinalModal, highScoreSubmitCancel,
+  highScoreSubmitModal,
 } from "../drawing/draw.js"
 
 import { events, multyFunction } from "../listeners/listeners.js"
@@ -19,6 +20,7 @@ import { nextLevel, resetBricks, resetBricksLevel, levelNr } from "../levels/lev
 import { changeSpeed, resetDirections } from "../collisions/direction.js"
 import { changeLives, resetLives } from "../actions/lives.js"
 import { soundBallBounce, soundBallDeath, soundButtonClick, soundFinalFinish, soundPlayerDeath, soundRoundEnd, soundRoundStart } from "../sounds/sounds.js"
+import { getFormValue, resetFormValue, newPostScores, newGetEasy, newGetMedium, newGetHard } from "../requests/requests.js"
 
 //DIFFICULTY STATE
 let difficulty = "easy"
@@ -90,21 +92,25 @@ function leaderBoardMenu() {
   drawLeaderBoardMenu()
   leaderboardEasy.onclick = function () {
     soundButtonClick()
+    newGetEasy()
     leaderboardMedium.classList.remove("activeButton")
     leaderboardHard.classList.remove("activeButton")
     leaderboardEasy.classList.add("activeButton")
   }
   leaderboardMedium.onclick = function () {
     soundButtonClick()
+    newGetMedium()
     leaderboardHard.classList.remove("activeButton")
     leaderboardEasy.classList.remove("activeButton")
     leaderboardMedium.classList.add("activeButton")
   }
   leaderboardHard.onclick = function () {
     soundButtonClick()
+    newGetHard()
     leaderboardMedium.classList.remove("activeButton")
     leaderboardEasy.classList.remove("activeButton")
     leaderboardHard.classList.add("activeButton")
+    
   }
   continueButton.onclick = function () {
     soundButtonClick()
@@ -116,6 +122,11 @@ function leaderBoardMenu() {
 
 function removeLeaderBoardMenu() {
   const menu = document.querySelector(".leaderBoardMenu")
+  grid.removeChild(menu)
+}
+
+function removeNoData() {
+  const menu = document.querySelector("#noData")
   grid.removeChild(menu)
 }
 
@@ -223,7 +234,7 @@ function pause() {
   replayButton.onclick = function () {
     setPreviousTimer()
     setPreviousScore()
-    SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
+    SCORE_DISPLAY.innerHTML = Math.round(scoreCount)
     soundButtonClick()
     pauseStatus = false
     events[32] = pause
@@ -263,6 +274,7 @@ function finished() {
   delete events[32]
   menuButton.onclick = function () {
     soundButtonClick()
+    resetFormValue()
     LEVEL_STATUS.innerHTML = "0"
     removeFinished()
     fullResetter()
@@ -271,7 +283,7 @@ function finished() {
   replayButton.onclick = function () {
     setPreviousTimer()
     setPreviousScore()
-    SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
+    SCORE_DISPLAY.innerHTML = Math.round(scoreCount)
     soundButtonClick()
     drawGame()
     removeFinished()
@@ -294,7 +306,7 @@ function finished() {
 }
 
 function removeFinished() {
-  if (levelNr < 1) {
+  if (levelNr < 5) {
     const menu = document.querySelector(".finish")
     grid.removeChild(menu)
   } else {
@@ -305,16 +317,29 @@ function removeFinished() {
 
 function modal() {
   drawFinalModal()
+  highScoreSubmitCancel.onclick = function () {
+    removeModal()
+  }
+
+  highScoreSubmitModal.onclick = function () {
+    getFormValue("scoreUserName")
+    removeSubmitButton()
+    newPostScores()
+    removeModal()
+  }
 }
 
 function removeModal() {
-    const menu = document.querySelector(".modal")
-    grid.removeChild(menu)
+  const menu = document.querySelector(".modal")
+  grid.removeChild(menu)
+  const menu1 = document.querySelector(".modal-js-overlay")
+  grid.removeChild(menu1)
 }
 
 function removeSubmitButton() {
-  const menu = document.querySelector("#")
-  grid.removeChild(menu)
+  const finalMenu = document.querySelector(".finishFinal")
+  const menu = document.querySelector("#submitHigh")
+  finalMenu.removeChild(menu)
 }
 
 
@@ -336,7 +361,7 @@ function death() {
   }
   replayButton.onclick = function () {
     setPreviousScore()
-    SCORE_DISPLAY.innerHTML = scoreCount.toFixed(2)
+    SCORE_DISPLAY.innerHTML = Math.round(scoreCount)
     soundButtonClick()
     drawGame()
     gameRestarter()

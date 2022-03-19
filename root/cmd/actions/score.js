@@ -46,5 +46,5 @@ function setPreviousScore() {
 //SCORE
 function score() {
     scoreCount += (10 * scoreDefault / (time / 100 + 0.1))
-    SCORE_DISPLAY.innerHTML = `${scoreCount.toFixed(2)}`
+    SCORE_DISPLAY.innerHTML = `${Math.round(scoreCount)}`
 }

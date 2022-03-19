@@ -418,7 +418,7 @@ button {
 }
 
 #leaderBoardTopBar {
-  background: red;
+  background: rgb(206, 198, 198);
   width: 300px;
   height: 60px;
 }
@@ -430,43 +430,33 @@ button {
   top: 6px;
 }
 
-#leaderBoardSearch input{
-top: 15%;
-right: 15%;
-width: 199px;
-height: 13px;
-}
 
 #leaderBoardEasy {
   position: absolute;
-  top: 12%;
+  top: 8%;
   left: 14%;
   color: lightgreen;
 }
 
 #leaderBoardMedium {
   position: absolute;
-  top: 12%;
+  top: 8%;
   left: 39%;
   color: yellow;
 }
 
 #leaderBoardHard {
   position: absolute;
-  top: 12%;
+  top: 8%;
   left: 69%;
   color: lightcoral;
 }
 
-
 #leaderBoardBottomBar {
-  background: blue;
+  background: rgb(206, 198, 198);
   width: 300px;
   height: 205px;
-
 }
-
-
 
 #leaderBoardBack {
   position: absolute;
@@ -474,6 +464,67 @@ height: 13px;
   left: 31%;
 }
 
+#noData {
+  color: black;
+  font-size: 20px;
+  font-weight: 550;
+  position: absolute;
+  top: 138px;
+  left: 70px;
+}
+
+#rankBoard {
+  top: 63px;
+  left: 9px;
+}
+
+#usernameBoard {
+  top: 63px;
+  left: 54px;
+}
+
+#scoreBoard {
+  top: 63px;
+  left: 158px;
+}
+
+#timeBoard {
+  top: 63px;
+  left: 227px;
+}
+
+#btn-next {
+  position: absolute;
+  bottom: 1px;
+  left: 233px;
+}
+
+#btn-prev{
+  position: absolute;
+  bottom: 1px;
+  left: 18px;
+}
+
+table {
+  width:100%;
+  padding-left: 17px;
+  padding-right: 17px;
+  /* position: absolute; */
+}
+
+th {
+  font-weight:bold;
+  font-size: 17px;
+  color: rgb(122, 49, 122);
+  padding-right: 1px;
+  position: absolute;
+}
+
+td {
+  font-size: 16px;
+  padding: 5px 0px 5px 3px;
+  border: solid 1px black;
+}
 
 
 /* -----------------------DIFFICULTY SELECT MENU----------------------- */
@@ -731,9 +782,9 @@ height: 13px;
   width: 250px;
   height: 80px;
   z-index: 6000;
-  background-color: whitesmoke;
-  opacity: 0.8;
- /*  border: 1px double red; */
+  background-color: rgb(206, 198, 198);
+
+  border: 4px double red;
   color: gainsboro;
   border-radius: 5px;
   text-transform: uppercase;
@@ -754,6 +805,15 @@ top: 55px;
 left: 110px;
 }
 
+#modalDiv input {
+  position: absolute;
+  z-index: 7000;
+  left: 37px;
+  top: 18px;
+
+}
+
+
 .modal-js-overlay {
   background-color: rgba(0,0,0,.5);
   opacity: .8;
@@ -763,3 +823,13 @@ left: 110px;
   height: 450px;
   z-index: 2000;
 }
+
+#modalResponse {
+  position: absolute;
+  top: 262px;
+  left: 25px;
+  font-size: 15px;
+  font-weight: 550;
+  -webkit-text-stroke: black 0.1px;
+}
+
