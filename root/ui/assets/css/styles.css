@@ -392,12 +392,8 @@ button {
 /* -----------------------LEADERBOARD----------------------- */
 
 .leaderBoardMenu {
-<<<<<<< HEAD
-  background-image: url("../art/menuBackground.png");
-=======
   background-image: url("../art/tileSheet.png"); 
   background-position: 0px -174px;
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -427,11 +423,7 @@ button {
 }
 
 #leaderBoardTopBar {
-<<<<<<< HEAD
   background: rgb(206, 198, 198);
-=======
-  background: red;
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
   width: 300px;
   height: 60px;
 }
@@ -443,75 +435,40 @@ button {
   top: 6px;
 }
 
-<<<<<<< HEAD
 
 #leaderBoardEasy {
   position: absolute;
   top: 8%;
-=======
-#leaderBoardSearch input{
-top: 15%;
-right: 15%;
-width: 199px;
-height: 13px;
-}
-
-#leaderBoardEasy {
-  position: absolute;
-  top: 12%;
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
   left: 14%;
   color: lightgreen;
 }
 
 #leaderBoardMedium {
   position: absolute;
-<<<<<<< HEAD
   top: 8%;
-=======
-  top: 12%;
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
   left: 39%;
   color: yellow;
 }
 
 #leaderBoardHard {
   position: absolute;
-<<<<<<< HEAD
   top: 8%;
-=======
-  top: 12%;
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
   left: 69%;
   color: lightcoral;
 }
 
-<<<<<<< HEAD
 #leaderBoardBottomBar {
   background: rgb(206, 198, 198);
   width: 300px;
   height: 205px;
 }
 
-=======
-
-#leaderBoardBottomBar {
-  background: blue;
-  width: 300px;
-  height: 205px;
-
-}
-
-
-
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
 #leaderBoardBack {
   position: absolute;
   top: 85%;
   left: 31%;
 }
 
-<<<<<<< HEAD
 #noData {
   color: black;
   font-size: 20px;
@@ -573,8 +530,6 @@ td {
   padding: 5px 0px 5px 3px;
   border: solid 1px black;
 }
-=======
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
 
 
 /* -----------------------DIFFICULTY SELECT MENU----------------------- */
@@ -837,15 +792,9 @@ td {
   width: 250px;
   height: 80px;
   z-index: 6000;
-<<<<<<< HEAD
   background-color: rgb(206, 198, 198);
 
   border: 4px double red;
-=======
-  background-color: whitesmoke;
-  opacity: 0.8;
- /*  border: 1px double red; */
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
   color: gainsboro;
   border-radius: 5px;
   text-transform: uppercase;
@@ -866,7 +815,6 @@ top: 55px;
 left: 110px;
 }
 
-<<<<<<< HEAD
 #modalDiv input {
   position: absolute;
   z-index: 7000;
@@ -876,8 +824,6 @@ left: 110px;
 }
 
 
-=======
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
 .modal-js-overlay {
   background-color: rgba(0,0,0,.5);
   opacity: .8;
@@ -887,7 +833,6 @@ left: 110px;
   height: 450px;
   z-index: 2000;
 }
-<<<<<<< HEAD
 
 #modalResponse {
   position: absolute;
@@ -898,5 +843,3 @@ left: 110px;
   -webkit-text-stroke: black 0.1px;
 }
 
-=======
->>>>>>> d96d27748fb05364ead6fd09c42ae4df0bb57d0d
