@@ -1,7 +1,7 @@
 //EXPORTS
 export {
     getFormValue, resetFormValue, newPostScores,
-    newGetEasy, newGetMedium, newGetHard, response
+    newGetEasy, newGetMedium, newGetHard, response, name
 }
 
 //IMPORTS

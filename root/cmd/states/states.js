@@ -20,7 +20,7 @@ import { nextLevel, resetBricks, resetBricksLevel, levelNr } from "../levels/lev
 import { changeSpeed, resetDirections } from "../collisions/direction.js"
 import { changeLives, resetLives } from "../actions/lives.js"
 import { soundBallBounce, soundBallDeath, soundButtonClick, soundFinalFinish, soundPlayerDeath, soundRoundEnd, soundRoundStart } from "../sounds/sounds.js"
-import { getFormValue, resetFormValue, newPostScores, newGetEasy, newGetMedium, newGetHard } from "../requests/requests.js"
+import { getFormValue, resetFormValue, newPostScores, newGetEasy, newGetMedium, newGetHard, name } from "../requests/requests.js"
 
 //DIFFICULTY STATE
 let difficulty = "easy"
@@ -289,6 +289,7 @@ function finished() {
     gameRestarter()
     game()
   }
+  
   highScoreSubmit.onclick = function () {
     modal()
   }
@@ -312,9 +313,11 @@ function modal() {
 
   highScoreSubmitModal.onclick = function () {
     getFormValue("scoreUserName")
-    removeSubmitButton()
-    newPostScores()
-    removeModal()
+    if (name.length > 2) {
+      removeSubmitButton()
+      newPostScores()
+      removeModal()
+    }
   }
 }
 

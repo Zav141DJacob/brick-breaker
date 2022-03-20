@@ -15,6 +15,7 @@ import (
 
 //SCORE SORTER
 type ScoreSorter []Data
+
 func (a ScoreSorter) Len() int           { return len(a) }
 func (a ScoreSorter) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a ScoreSorter) Less(i, j int) bool { return a[i].Score > a[j].Score }
@@ -61,7 +62,7 @@ func Ordinalize(num int) string {
 func apiResponse(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	switch r.Method {
-		
+
 	case "POST":
 		w.WriteHeader(http.StatusCreated)
 
@@ -105,11 +106,16 @@ func apiResponse(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		var total = len(tempDB)
-		percent := strconv.Itoa(position / total)
+		var float1 float64 = float64(total)
+		var float2 float64 = float64(position)
+		var floatPercent float64
+		floatPercent = math.Ceil(float2 / float1 * 100)
+		var lol int = int(floatPercent)
+		percent := strconv.Itoa(lol)
 
 		ordPosition := Ordinalize(position)
 
-		response := "Congrats " + onePerson.Username + "," + " you are in the top " + percent + "%, on the " + ordPosition + " position in " + onePerson.Difficulty +  " difficulty"
+		response := "Congrats " + onePerson.Username + "," + " you are in the top " + percent + "%, on the " + ordPosition + " position in " + onePerson.Difficulty + " difficulty"
 		w.Write([]byte(response))
 	default:
 		w.WriteHeader(http.StatusNotFound)
