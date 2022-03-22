@@ -1,5 +1,5 @@
 //EXPORTS
-export { pause, unPause, mainMenu, removeMainMenu, pauseStatus, finished, death, difficulty }
+export { pause, unPause, mainMenu, removeMainMenu, pauseStatus, finished, death, difficulty, fullResetter }
 
 //IMPORTS
 import {
@@ -10,6 +10,7 @@ import {
   highScoreSubmitModal,
 } from "../drawing/draw.js"
 
+import { resetStory } from "../drawing/draw.js"
 import { events, multyFunction } from "../listeners/listeners.js"
 import { resetTimer, setPreviousTimer, timer, timerID, miniRestartTimer, timeSaver } from "../actions/timer.js"
 import { grid, game, LEVEL_STATUS, DIFFICULTY_STATUS, SCORE_DISPLAY } from "../game.js"
@@ -110,7 +111,7 @@ function leaderBoardMenu() {
     leaderboardMedium.classList.remove("activeButton")
     leaderboardEasy.classList.remove("activeButton")
     leaderboardHard.classList.add("activeButton")
-    
+
   }
   continueButton.onclick = function () {
     soundButtonClick()
@@ -122,11 +123,6 @@ function leaderBoardMenu() {
 
 function removeLeaderBoardMenu() {
   const menu = document.querySelector(".leaderBoardMenu")
-  grid.removeChild(menu)
-}
-
-function removeNoData() {
-  const menu = document.querySelector("#noData")
   grid.removeChild(menu)
 }
 
@@ -222,6 +218,7 @@ function pause() {
   pauseStatus = true
   clearInterval(timerID)
   menuButton.onclick = function () {
+    resetStory()
     soundButtonClick()
     pauseStatus = false
     events[32] = pause
@@ -229,7 +226,10 @@ function pause() {
     removeGame()
     fullResetter()
     mainMenu()
+
   }
+
+  
 
   replayButton.onclick = function () {
     setPreviousTimer()
@@ -273,6 +273,7 @@ function finished() {
   delete events[39]
   delete events[32]
   menuButton.onclick = function () {
+    resetStory()
     soundButtonClick()
     resetFormValue()
     LEVEL_STATUS.innerHTML = "0"
@@ -353,6 +354,7 @@ function death() {
   delete events[39]
   delete events[32]
   menuButton.onclick = function () {
+    resetStory()
     soundButtonClick()
     LEVEL_STATUS.innerHTML = "0"
     removeDeathMenu()

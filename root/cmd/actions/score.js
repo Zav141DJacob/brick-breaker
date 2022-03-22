@@ -1,13 +1,14 @@
 //EXPORTS
 export {
     score, resetScore, changeScoreDefault, scoreCount,
-    setPreviousScore, savePreviousScore
+    setPreviousScore, savePreviousScore, scoreDefault
 }
 
 //IMPORTS
 import { SCORE_DISPLAY } from "../game.js"
-import { difficulty } from "../states/states.js"
+import { difficulty, pause } from "../states/states.js"
 import { time } from "./timer.js"
+import {drawMiddleStory, middleStoryTold} from "../drawing/draw.js"
 
 let scoreDefault = 1
 
@@ -43,8 +44,18 @@ function setPreviousScore() {
 }
 
 
+
+
 //SCORE
 function score() {
     scoreCount += (10 * scoreDefault / (time / 100 + 0.1))
     SCORE_DISPLAY.innerHTML = `${Math.round(scoreCount)}`
+
+    // if (middleStoryTold == false && scoreCount >= 1000*scoreDefault) {
+    //     drawMiddleStory();
+    // }
 }
+
+
+
+

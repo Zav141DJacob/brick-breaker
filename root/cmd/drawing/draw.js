@@ -6,10 +6,11 @@ export {
     paddlePosition, PADDLE_WIDTH, PADDLE_HEIGHT, BALL_DIAMETER, resetBall, resetPaddle, continueButton,
     drawGameMenu, drawHowToMenu, easyButton, mediumButton, hardButton, changeBallDiameter, changePaddleStats,
     highScores, drawLeaderBoardMenu, leaderboardEasy, leaderboardMedium, leaderboardHard, highScoreSubmit, drawFinalModal,
-    highScoreSubmitCancel, highScoreSubmitModal, drawResponse, drawTable
+    highScoreSubmitCancel, highScoreSubmitModal, drawResponse, drawTable, drawMiddleStory, resetStory, middleStoryTold
 }
 
 //IMPORTS
+import { events } from "../listeners/listeners.js"
 import { livesCount } from "../actions/lives.js"
 import { ballMover } from "../actions/moveBall.js"
 import { scoreCount } from "../actions/score.js"
@@ -17,7 +18,7 @@ import { changeDirection } from "../collisions/direction.js"
 import { grid } from "../game.js"
 import { levelNr, levelSelector } from "../levels/levels.js"
 import { soundBallDeath } from "../sounds/sounds.js"
-import { difficulty } from "../states/states.js"
+import { difficulty, finished, fullResetter, pause, unPause } from "../states/states.js"
 import { time, timeSaver } from "../actions/timer.js"
 import { response } from "../requests/requests.js"
 
@@ -326,12 +327,43 @@ function drawLeaderBoardMenu() {
 }
 
 
+let storyTold = false;
 //GENERAL GAMEFIELD
 function drawGame() {
     const game = document.createElement("div")
     game.classList.add("gameField")
     grid.appendChild(game)
+
+    if (storyTold == false) {
+        drawStory(game)
+
+    }
+
     gameField = document.querySelector(".gameField")
+}
+
+function drawStory(game) {
+    delete events[37]
+    delete events[38]
+    delete events[39]
+    delete events[32]
+
+    var story = "The Ball had always loved the outer space with its quiet, deadly cold. It was a place where he felt calm.<br>The Ball walked over to the window and reflected on his serene surroundings.<br>Then he saw something in the distance, or rather someone. It was the figure of The Wall. The Wall was a bulky brute with massive body and slow reaction.<br>The Ball gulped. He was not prepared for The Wall."
+    const storyBegin = document.createElement("div");
+    storyBegin.id = "storybox";
+    storyBegin.innerHTML = story
+    game.appendChild(storyBegin)
+    const skipButton = document.createElement("button")
+    skipButton.id = "skipStart"
+    skipButton.innerText = "CONTINUE"
+    storyBegin.appendChild(skipButton)
+
+
+    skipButton.addEventListener("click", function () {
+        storyBegin.remove();
+        fullResetter()
+    });
+    storyTold = true;
 }
 
 
@@ -436,6 +468,15 @@ function drawFinishMenu() {
         highScoreSubmit.id = "submitHigh"
         highScoreSubmit.innerHTML = `Submit (${Math.round(scoreCount)})`
         menu.appendChild(highScoreSubmit)
+
+
+        //DRAW WIN ENDING
+        var story = "Suddenly, The Wall lunged forward and tried to punch The Ball in the face. Quickly, The Ball grabbed a paddle and brought it down on The Wall's skull. The Wall's massive body trembled and his eyes fluttered. Then he let out an agonising groan and collapsed onto the ground. Moments later The Wall was dead."
+        const storyWinEnding = document.createElement("div");
+        storyWinEnding.id = "storyWinEnd";
+        storyWinEnding.innerHTML = story
+        menu.appendChild(storyWinEnding)
+
     }
 }
 
@@ -617,4 +658,58 @@ function drawDeathMenu() {
     replayButton.id = "deathRestart"
     replayButton.innerHTML = "Restart level"
     menu.appendChild(replayButton)
+
+    var story = "The Ball wasn´t fast enough and the next moment he was punched in the face. The Ball trembled and his eyes fluttered. Then he let out an agonising groan and collapsed onto the ground. Moments later The Ball was dead."
+    const storyEnding = document.createElement("div");
+    storyEnding.id = "storyEnd";
+    storyEnding.innerHTML = story
+    menu.appendChild(storyEnding)
+}
+
+
+var middleStoryTold = false
+
+
+function drawMiddleStory() {
+    var story = 'As The Ball stepped outside and The Wall came closer, he could see the violent stare in his eye. "I am here because I want a fight," The Wall bellowed, in a defensive tone. He slammed his fist against The Ball\'s chest. "I frigging hate you, The Ball." The Ball looked back, even more irritable and still fingering the solid paddle. "The Wall, I will break you," he replied.'
+    
+    if (levelSelector.length >0) {
+        pause()
+        var pauseDiv = document.querySelector('.pause')
+        pauseDiv.remove()
+    }
+
+    var game = document.querySelector(".gameField")
+    const storyBegin = document.createElement("div");
+    storyBegin.id = "storybox";
+    storyBegin.innerHTML = story
+    game.appendChild(storyBegin)
+    const skipButton = document.createElement("button")
+    skipButton.id = "skipStart"
+    skipButton.innerText = "CONTINUE"
+    storyBegin.appendChild(skipButton)
+
+
+
+    skipButton.addEventListener("click", function () {
+
+        storyBegin.remove();
+
+        if (levelSelector.length <= 0) {
+            finished()
+        } else {
+            pause()
+            events[32] = unPause
+        }
+
+
+    });
+    delete events[32]
+    middleStoryTold = true;
+}
+
+
+function resetStory() {
+    storyTold = false;
+    middleStoryTold = false;
 }

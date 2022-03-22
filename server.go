@@ -210,8 +210,10 @@ func main() {
 	http.HandleFunc("/data/medium", getResponseMedium)
 	http.HandleFunc("/data/hard", getResponseHard)
 
-	fmt.Printf("Starting server at port 8080\n")
-	if err := http.ListenAndServe(":8081", nil); err != nil {
+	fmt.Printf("Starting server at port 8081\n")
+	fmt.Printf("http://localhost:8081/\n")
+
+	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
 }

@@ -1,5 +1,5 @@
 //EXPORTS
-export { createEventListeners, events, events2, multyFunction }
+export { createEventListeners, events, events2, multyFunction, onEventFired}
 
 //IMPORTS
 import { ballMover, changePauseEnabler} from "../actions/moveBall.js";

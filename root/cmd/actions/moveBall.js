@@ -1,8 +1,8 @@
 //EXPORTS
-export { ballMover, moveBall, changePauseEnabler }
+export { ballMover, moveBall, changePauseEnabler, ballFrame }
 
 //IMPORTS
-import { drawBall, removeBall, ballPosition } from "../drawing/draw.js"
+import { drawBall, removeBall, ballPosition, middleStoryTold, drawMiddleStory } from "../drawing/draw.js"
 import { cPaddle, cWalls, cBricks } from "../collisions/collisions.js"
 import { events } from "../listeners/listeners.js"
 import { speed, xDirection, yDirection } from "../collisions/direction.js"
@@ -10,6 +10,7 @@ import { death, finished, pause, pauseStatus } from "../states/states.js"
 import { lives, livesCount } from "./lives.js"
 import { levelSelector } from "../levels/levels.js"
 import { savePreviousTimer } from "./timer.js"
+import { scoreDefault, scoreCount } from "./score.js"
 
 let pauseEnabler
 function changePauseEnabler() {
@@ -24,6 +25,8 @@ function ballMover() {
   }
 }
 
+let ballFrame;
+
 function moveBall() {
   
   delete events[38]
@@ -35,7 +38,7 @@ function moveBall() {
   cWalls()
   cBricks()
 
-  let ballFrame = requestAnimationFrame(moveBall)
+  ballFrame = requestAnimationFrame(moveBall)
   //CHECK FOR LIVES/RESPAWN
   if (ballPosition[1] <= 0 && livesCount > 0) {
     cancelAnimationFrame(ballFrame)
@@ -58,8 +61,18 @@ function moveBall() {
     cancelAnimationFrame(ballFrame)
   }
 
+  // CHECKS FOR STORY
+  if (scoreCount >= 80*scoreDefault && middleStoryTold == false) {
+    drawMiddleStory();
+
+    if (levelSelector.length <= 0) {
+      cancelAnimationFrame(ballFrame)
+      removeBall()
+      savePreviousTimer()
+    }
+}
   //CHECK FOR FINISHED
-  if (levelSelector.length <= 0) {
+  else if (levelSelector.length <= 0) {
     cancelAnimationFrame(ballFrame)
     removeBall()
     savePreviousTimer()
