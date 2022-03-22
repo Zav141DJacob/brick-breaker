@@ -62,7 +62,7 @@ function moveBall() {
   }
 
   // CHECKS FOR STORY
-  if (scoreCount >= 1000*scoreDefault && middleStoryTold == false) {
+  if (scoreCount >= 1000 * scoreDefault && middleStoryTold == false) {
     drawMiddleStory();
 
     if (levelSelector.length <= 0) {

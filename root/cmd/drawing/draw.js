@@ -342,6 +342,7 @@ function drawGame() {
     gameField = document.querySelector(".gameField")
 }
 
+//STORY
 function drawStory(game) {
     delete events[37]
     delete events[38]
@@ -392,7 +393,7 @@ function drawPause() {
 
 //FINISH
 function drawFinishMenu() {
-    if (levelNr < 5) {
+    if (levelNr < 1) {
         const menu = document.createElement("div")
         menu.classList.add("finish")
         grid.appendChild(menu)
@@ -670,6 +671,7 @@ function drawDeathMenu() {
 var middleStoryTold = false
 
 
+//MIDDLE STORY
 function drawMiddleStory() {
     var story = 'As The Ball stepped outside and The Wall came closer, he could see the violent stare in his eye. "I am here because I want a fight," The Wall bellowed, in a defensive tone. He slammed his fist against The Ball\'s chest. "I frigging hate you, The Ball." The Ball looked back, even more irritable and still fingering the solid paddle. "The Wall, I will break you," he replied.'
     
